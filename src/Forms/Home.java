@@ -5,13 +5,36 @@
  */
 package Forms;
 
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import javax.swing.JOptionPane;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
+import java.sql.PreparedStatement;
+import java.util.TimerTask;
+import java.util.Timer;
+//import javax.management.timer.Timer;
+import java.util.concurrent.TimeUnit;
+import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.jdbc.JDBCCategoryDataset;
+import org.jfree.data.xy.XYSeries;
+
 
 /**
  *
  * @author t-bye-
  */
+
 public class Home extends javax.swing.JFrame {
+    Connection conn=null;
+    PreparedStatement ps=null;
+    ResultSet rs=null;
 
     /**
      * Creates new form Home
@@ -19,9 +42,13 @@ public class Home extends javax.swing.JFrame {
     public Home() {
         initComponents();
         this.setLocationRelativeTo(null);
+        Graphs.setVisible(false);
         Reports.setVisible(false);
         Home.setVisible(true);
+//        histogramChart();
+        graph1();
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -45,44 +72,15 @@ public class Home extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        Reports = new javax.swing.JPanel();
+        Graphs = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jPanel8 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        jPanel11 = new javax.swing.JPanel();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        jPanel12 = new javax.swing.JPanel();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        jPanel14 = new javax.swing.JPanel();
-        jLabel29 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jPanel15 = new javax.swing.JPanel();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
-        jPanel18 = new javax.swing.JPanel();
-        jLabel15 = new javax.swing.JLabel();
-        jPanel19 = new javax.swing.JPanel();
-        jPanel20 = new javax.swing.JPanel();
-        jLabel30 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
+        chart_panel = new javax.swing.JPanel();
         Home = new javax.swing.JPanel();
         jPanel22 = new javax.swing.JPanel();
         jLabel32 = new javax.swing.JLabel();
@@ -142,6 +140,53 @@ public class Home extends javax.swing.JFrame {
         jLabel71 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextArea3 = new javax.swing.JTextArea();
+        Reports = new javax.swing.JPanel();
+        jPanel21 = new javax.swing.JPanel();
+        jPanel32 = new javax.swing.JPanel();
+        jLabel72 = new javax.swing.JLabel();
+        jLabel73 = new javax.swing.JLabel();
+        jPanel33 = new javax.swing.JPanel();
+        jPanel35 = new javax.swing.JPanel();
+        jLabel74 = new javax.swing.JLabel();
+        jLabel75 = new javax.swing.JLabel();
+        jLabel76 = new javax.swing.JLabel();
+        jPanel36 = new javax.swing.JPanel();
+        jLabel77 = new javax.swing.JLabel();
+        jLabel78 = new javax.swing.JLabel();
+        jLabel79 = new javax.swing.JLabel();
+        jPanel37 = new javax.swing.JPanel();
+        jLabel80 = new javax.swing.JLabel();
+        jLabel81 = new javax.swing.JLabel();
+        jLabel82 = new javax.swing.JLabel();
+        jLabel83 = new javax.swing.JLabel();
+        jLabel84 = new javax.swing.JLabel();
+        jLabel85 = new javax.swing.JLabel();
+        jPanel38 = new javax.swing.JPanel();
+        jLabel86 = new javax.swing.JLabel();
+        jLabel87 = new javax.swing.JLabel();
+        jPanel39 = new javax.swing.JPanel();
+        jLabel88 = new javax.swing.JLabel();
+        jLabel89 = new javax.swing.JLabel();
+        jPanel40 = new javax.swing.JPanel();
+        jLabel90 = new javax.swing.JLabel();
+        jLabel91 = new javax.swing.JLabel();
+        jLabel92 = new javax.swing.JLabel();
+        jLabel93 = new javax.swing.JLabel();
+        jPanel41 = new javax.swing.JPanel();
+        jLabel94 = new javax.swing.JLabel();
+        jPanel42 = new javax.swing.JPanel();
+        jPanel43 = new javax.swing.JPanel();
+        jLabel95 = new javax.swing.JLabel();
+        jLabel96 = new javax.swing.JLabel();
+        Graphs1 = new javax.swing.JPanel();
+        jPanel8 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jPanel11 = new javax.swing.JPanel();
+        jPanel12 = new javax.swing.JPanel();
+        jPanel14 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        chart_panel_1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -149,6 +194,7 @@ public class Home extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(91, 78, 121));
+        jPanel2.setName(""); // NOI18N
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel9.setBackground(new java.awt.Color(118, 119, 132));
@@ -168,6 +214,9 @@ public class Home extends javax.swing.JFrame {
 
         jPanel10.setBackground(new java.awt.Color(4, 6, 70));
         jPanel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel10MouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jPanel10MousePressed(evt);
             }
@@ -182,6 +231,9 @@ public class Home extends javax.swing.JFrame {
         jLabel4.setText("HOME");
         jLabel4.setToolTipText("");
         jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jLabel4MousePressed(evt);
             }
@@ -194,11 +246,21 @@ public class Home extends javax.swing.JFrame {
         jPanel2.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 220, 80));
 
         jPanel13.setBackground(new java.awt.Color(4, 6, 70));
+        jPanel13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel13MouseClicked(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Microsoft Himalaya", 0, 55)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("GRAPHS");
         jLabel1.setToolTipText("");
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
@@ -225,6 +287,16 @@ public class Home extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("NOTIFICATION");
         jLabel3.setToolTipText("");
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
+        jLabel3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jLabel3KeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
@@ -244,6 +316,9 @@ public class Home extends javax.swing.JFrame {
 
         jPanel16.setBackground(new java.awt.Color(4, 6, 70));
         jPanel16.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel16MouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jPanel16MousePressed(evt);
             }
@@ -258,6 +333,9 @@ public class Home extends javax.swing.JFrame {
         jLabel2.setText("REPORTS");
         jLabel2.setToolTipText("");
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jLabel2MousePressed(evt);
             }
@@ -282,38 +360,38 @@ public class Home extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 550));
 
-        Reports.setBackground(new java.awt.Color(153, 153, 153));
-        Reports.setName("Reports_Panel"); // NOI18N
-        Reports.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        Graphs.setBackground(new java.awt.Color(153, 153, 153));
+        Graphs.setName("Reports_Panel"); // NOI18N
+        Graphs.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel4.setBackground(new java.awt.Color(5, 9, 131));
+
+        jLabel5.setFont(new java.awt.Font("Microsoft Himalaya", 0, 60)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Graphical Representation");
+        jLabel5.setToolTipText("");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 940, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(jLabel5)
+                .addContainerGap(271, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 40, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        Reports.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 940, 40));
+        Graphs.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 940, 40));
 
         jPanel5.setBackground(new java.awt.Color(192, 193, 196));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel5.setFont(new java.awt.Font("Microsoft Himalaya", 0, 60)); // NOI18N
-        jLabel5.setText("REPORTS");
-        jLabel5.setToolTipText("");
-        jPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, -1, 50));
-
-        jLabel6.setFont(new java.awt.Font("Microsoft Himalaya", 0, 30)); // NOI18N
-        jLabel6.setText("This will provide your data for creating solutions and decisions in implementing actions");
-        jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, -1, -1));
-
-        Reports.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 940, 90));
+        Graphs.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 940, 90));
 
         jPanel6.setBackground(new java.awt.Color(153, 153, 153));
         jPanel6.setName(""); // NOI18N
@@ -325,154 +403,22 @@ public class Home extends javax.swing.JFrame {
         jPanel7.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(-190, 350, -1, -1));
         jPanel7.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 230, -1, -1));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/temperature-icon.png"))); // NOI18N
-        jPanel7.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, -1, 90));
-
-        jPanel8.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel9.setFont(new java.awt.Font("Microsoft Himalaya", 0, 20)); // NOI18N
-        jLabel9.setText("- This will not affects fishes inside the fond");
-        jPanel8.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, 20));
-
-        jLabel10.setFont(new java.awt.Font("Microsoft Himalaya", 0, 20)); // NOI18N
-        jLabel10.setText("- The fish can be producted at this temperature");
-        jPanel8.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, 20));
-
-        jLabel21.setFont(new java.awt.Font("Microsoft Himalaya", 0, 20)); // NOI18N
-        jLabel21.setText("- The reading of temperature today is 35°");
-        jPanel8.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, 20));
-
-        jPanel7.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 330, 70));
-
-        jPanel11.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel24.setFont(new java.awt.Font("Microsoft Himalaya", 0, 35)); // NOI18N
-        jLabel24.setText("35°C");
-        jPanel11.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 30));
-
-        jPanel7.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 70, 40));
-
-        jLabel16.setFont(new java.awt.Font("Microsoft Himalaya", 1, 24)); // NOI18N
-        jLabel16.setText("WQMD FINDINGS:");
-        jPanel7.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 200, -1, -1));
-
-        jLabel17.setFont(new java.awt.Font("Microsoft Himalaya", 0, 24)); // NOI18N
-        jLabel17.setText("Reading");
-        jPanel7.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, -1, -1));
-
-        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ph.png"))); // NOI18N
-        jPanel7.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
-
-        jLabel19.setFont(new java.awt.Font("Microsoft Himalaya", 0, 24)); // NOI18N
-        jLabel19.setText("Temperature");
-        jPanel7.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
-
-        jLabel20.setFont(new java.awt.Font("Microsoft Himalaya", 0, 24)); // NOI18N
-        jLabel20.setText("pH");
-        jPanel7.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, -1, -1));
-
-        jPanel12.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel12.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel22.setFont(new java.awt.Font("Microsoft Himalaya", 0, 20)); // NOI18N
-        jLabel22.setText("- The water is contaminated with feeds");
-        jPanel12.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, 20));
-
-        jLabel25.setFont(new java.awt.Font("Microsoft Himalaya", 0, 20)); // NOI18N
-        jLabel25.setText("- People are not able to drink this water");
-        jPanel12.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 20));
-
-        jPanel7.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 330, 60));
-
-        jPanel14.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel14.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel29.setFont(new java.awt.Font("Microsoft Himalaya", 0, 35)); // NOI18N
-        jLabel29.setText("6.5 pH");
-        jPanel14.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 30));
-
-        jPanel7.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 80, 40));
-
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/oxygen.png"))); // NOI18N
-        jPanel7.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, -1, -1));
-
-        jPanel15.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel15.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel23.setFont(new java.awt.Font("Microsoft Himalaya", 0, 20)); // NOI18N
-        jLabel23.setText("- There are no effects in the environment");
-        jPanel15.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, 20));
-
-        jLabel26.setFont(new java.awt.Font("Microsoft Himalaya", 0, 20)); // NOI18N
-        jLabel26.setText("- Oxygen in the water is normal");
-        jPanel15.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 20));
-
-        jPanel7.add(jPanel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, 330, 60));
-
-        jLabel27.setFont(new java.awt.Font("Microsoft Himalaya", 0, 24)); // NOI18N
-        jLabel27.setText("Reading");
-        jPanel7.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, -1));
-
-        jLabel28.setFont(new java.awt.Font("Microsoft Himalaya", 0, 24)); // NOI18N
-        jLabel28.setText("Oxygen ");
-        jPanel7.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, -1, -1));
-
-        jPanel18.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel18.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel15.setFont(new java.awt.Font("Microsoft Himalaya", 0, 30)); // NOI18N
-        jLabel15.setText("7.55 ppm");
-        jPanel18.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, 30));
-
-        jPanel7.add(jPanel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, 80, 40));
-
-        jPanel19.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
-        jPanel19.setLayout(jPanel19Layout);
-        jPanel19Layout.setHorizontalGroup(
-            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 336, Short.MAX_VALUE)
-        );
-        jPanel19Layout.setVerticalGroup(
-            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 106, Short.MAX_VALUE)
-        );
-
-        jPanel7.add(jPanel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 70, 340, 110));
-
-        jPanel20.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
-        jPanel20.setLayout(jPanel20Layout);
-        jPanel20Layout.setHorizontalGroup(
-            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 336, Short.MAX_VALUE)
-        );
-        jPanel20Layout.setVerticalGroup(
-            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 106, Short.MAX_VALUE)
-        );
-
-        jPanel7.add(jPanel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 230, -1, -1));
-
-        jLabel30.setFont(new java.awt.Font("Microsoft Himalaya", 0, 24)); // NOI18N
-        jLabel30.setText("Reading");
-        jPanel7.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
-
-        jLabel31.setFont(new java.awt.Font("Microsoft Himalaya", 1, 24)); // NOI18N
-        jLabel31.setText("WQMD SUGGESTS:");
-        jPanel7.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 40, -1, -1));
+        chart_panel.setBackground(new java.awt.Color(0, 0, 102));
+        chart_panel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                chart_panelMouseClicked(evt);
+            }
+        });
+        chart_panel.setLayout(new java.awt.BorderLayout());
+        jPanel7.add(chart_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 910, 390));
 
         jPanel6.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 930, 410));
 
-        Reports.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 940, 420));
+        Graphs.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 940, 420));
         jPanel6.getAccessibleContext().setAccessibleName("");
 
-        jPanel1.add(Reports, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 940, -1));
-        Reports.getAccessibleContext().setAccessibleName("Reports_Panel");
+        jPanel1.add(Graphs, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 940, -1));
+        Graphs.getAccessibleContext().setAccessibleName("Reports_Panel");
 
         Home.setBackground(new java.awt.Color(153, 153, 153));
         Home.setName("Reports_Panel"); // NOI18N
@@ -721,6 +667,254 @@ public class Home extends javax.swing.JFrame {
 
         jPanel1.add(Home, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 940, -1));
 
+        Reports.setBackground(new java.awt.Color(153, 153, 153));
+        Reports.setName("Reports_Panel"); // NOI18N
+        Reports.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel21.setBackground(new java.awt.Color(5, 9, 131));
+
+        javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
+        jPanel21.setLayout(jPanel21Layout);
+        jPanel21Layout.setHorizontalGroup(
+            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 940, Short.MAX_VALUE)
+        );
+        jPanel21Layout.setVerticalGroup(
+            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 40, Short.MAX_VALUE)
+        );
+
+        Reports.add(jPanel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 940, 40));
+
+        jPanel32.setBackground(new java.awt.Color(192, 193, 196));
+        jPanel32.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel72.setFont(new java.awt.Font("Microsoft Himalaya", 0, 60)); // NOI18N
+        jLabel72.setText("REPORTS");
+        jLabel72.setToolTipText("");
+        jPanel32.add(jLabel72, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, -1, 50));
+
+        jLabel73.setFont(new java.awt.Font("Microsoft Himalaya", 0, 30)); // NOI18N
+        jLabel73.setText("This will provide your data for creating solutions and decisions in implementing actions");
+        jPanel32.add(jLabel73, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, -1, -1));
+
+        Reports.add(jPanel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 940, 90));
+
+        jPanel33.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel33.setName(""); // NOI18N
+        jPanel33.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel35.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel74.setText("jLabel7");
+        jPanel35.add(jLabel74, new org.netbeans.lib.awtextra.AbsoluteConstraints(-190, 350, -1, -1));
+        jPanel35.add(jLabel75, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 230, -1, -1));
+
+        jLabel76.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/temperature-icon.png"))); // NOI18N
+        jPanel35.add(jLabel76, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, -1, 90));
+
+        jPanel36.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel36.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel77.setFont(new java.awt.Font("Microsoft Himalaya", 0, 20)); // NOI18N
+        jLabel77.setText("- This will not affects fishes inside the fond");
+        jPanel36.add(jLabel77, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, 20));
+
+        jLabel78.setFont(new java.awt.Font("Microsoft Himalaya", 0, 20)); // NOI18N
+        jLabel78.setText("- The fish can be producted at this temperature");
+        jPanel36.add(jLabel78, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, 20));
+
+        jLabel79.setFont(new java.awt.Font("Microsoft Himalaya", 0, 20)); // NOI18N
+        jLabel79.setText("- The reading of temperature today is 35°");
+        jPanel36.add(jLabel79, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, 20));
+
+        jPanel35.add(jPanel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 330, 70));
+
+        jPanel37.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel37.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel80.setFont(new java.awt.Font("Microsoft Himalaya", 0, 35)); // NOI18N
+        jLabel80.setText("35°C");
+        jPanel37.add(jLabel80, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 30));
+
+        jPanel35.add(jPanel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 70, 40));
+
+        jLabel81.setFont(new java.awt.Font("Microsoft Himalaya", 1, 24)); // NOI18N
+        jLabel81.setText("WQMD FINDINGS:");
+        jPanel35.add(jLabel81, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 200, -1, -1));
+
+        jLabel82.setFont(new java.awt.Font("Microsoft Himalaya", 0, 24)); // NOI18N
+        jLabel82.setText("Reading");
+        jPanel35.add(jLabel82, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, -1, -1));
+
+        jLabel83.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ph.png"))); // NOI18N
+        jPanel35.add(jLabel83, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
+
+        jLabel84.setFont(new java.awt.Font("Microsoft Himalaya", 0, 24)); // NOI18N
+        jLabel84.setText("Temperature");
+        jPanel35.add(jLabel84, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
+
+        jLabel85.setFont(new java.awt.Font("Microsoft Himalaya", 0, 24)); // NOI18N
+        jLabel85.setText("pH");
+        jPanel35.add(jLabel85, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, -1, -1));
+
+        jPanel38.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel38.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel86.setFont(new java.awt.Font("Microsoft Himalaya", 0, 20)); // NOI18N
+        jLabel86.setText("- The water is contaminated with feeds");
+        jPanel38.add(jLabel86, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, 20));
+
+        jLabel87.setFont(new java.awt.Font("Microsoft Himalaya", 0, 20)); // NOI18N
+        jLabel87.setText("- People are not able to drink this water");
+        jPanel38.add(jLabel87, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 20));
+
+        jPanel35.add(jPanel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 330, 60));
+
+        jPanel39.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel39.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel88.setFont(new java.awt.Font("Microsoft Himalaya", 0, 35)); // NOI18N
+        jLabel88.setText("6.5 pH");
+        jPanel39.add(jLabel88, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 30));
+
+        jPanel35.add(jPanel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 80, 40));
+
+        jLabel89.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/oxygen.png"))); // NOI18N
+        jPanel35.add(jLabel89, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, -1, -1));
+
+        jPanel40.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel40.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel90.setFont(new java.awt.Font("Microsoft Himalaya", 0, 20)); // NOI18N
+        jLabel90.setText("- There are no effects in the environment");
+        jPanel40.add(jLabel90, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, 20));
+
+        jLabel91.setFont(new java.awt.Font("Microsoft Himalaya", 0, 20)); // NOI18N
+        jLabel91.setText("- Oxygen in the water is normal");
+        jPanel40.add(jLabel91, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 20));
+
+        jPanel35.add(jPanel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, 330, 60));
+
+        jLabel92.setFont(new java.awt.Font("Microsoft Himalaya", 0, 24)); // NOI18N
+        jLabel92.setText("Reading");
+        jPanel35.add(jLabel92, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, -1));
+
+        jLabel93.setFont(new java.awt.Font("Microsoft Himalaya", 0, 24)); // NOI18N
+        jLabel93.setText("Oxygen ");
+        jPanel35.add(jLabel93, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, -1, -1));
+
+        jPanel41.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel41.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel94.setFont(new java.awt.Font("Microsoft Himalaya", 0, 30)); // NOI18N
+        jLabel94.setText("7.55 ppm");
+        jPanel41.add(jLabel94, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, 30));
+
+        jPanel35.add(jPanel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, 80, 40));
+
+        jPanel42.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        javax.swing.GroupLayout jPanel42Layout = new javax.swing.GroupLayout(jPanel42);
+        jPanel42.setLayout(jPanel42Layout);
+        jPanel42Layout.setHorizontalGroup(
+            jPanel42Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 336, Short.MAX_VALUE)
+        );
+        jPanel42Layout.setVerticalGroup(
+            jPanel42Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 106, Short.MAX_VALUE)
+        );
+
+        jPanel35.add(jPanel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 70, 340, 110));
+
+        jPanel43.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        javax.swing.GroupLayout jPanel43Layout = new javax.swing.GroupLayout(jPanel43);
+        jPanel43.setLayout(jPanel43Layout);
+        jPanel43Layout.setHorizontalGroup(
+            jPanel43Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 336, Short.MAX_VALUE)
+        );
+        jPanel43Layout.setVerticalGroup(
+            jPanel43Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 106, Short.MAX_VALUE)
+        );
+
+        jPanel35.add(jPanel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 230, -1, -1));
+
+        jLabel95.setFont(new java.awt.Font("Microsoft Himalaya", 0, 24)); // NOI18N
+        jLabel95.setText("Reading");
+        jPanel35.add(jLabel95, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
+
+        jLabel96.setFont(new java.awt.Font("Microsoft Himalaya", 1, 24)); // NOI18N
+        jLabel96.setText("WQMD SUGGESTS:");
+        jPanel35.add(jLabel96, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 40, -1, -1));
+
+        jPanel33.add(jPanel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 930, 410));
+
+        Reports.add(jPanel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 940, 420));
+
+        jPanel1.add(Reports, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 940, -1));
+
+        Graphs1.setBackground(new java.awt.Color(153, 153, 153));
+        Graphs1.setName("Reports_Panel"); // NOI18N
+        Graphs1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel8.setBackground(new java.awt.Color(5, 9, 131));
+
+        jLabel6.setFont(new java.awt.Font("Microsoft Himalaya", 0, 60)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Graphical Representation");
+        jLabel6.setToolTipText("");
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(jLabel6)
+                .addContainerGap(271, Short.MAX_VALUE))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        Graphs1.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 940, 40));
+
+        jPanel11.setBackground(new java.awt.Color(192, 193, 196));
+        jPanel11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        Graphs1.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 940, 90));
+
+        jPanel12.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel12.setName(""); // NOI18N
+        jPanel12.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel14.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel8.setText("jLabel7");
+        jPanel14.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(-190, 350, -1, -1));
+        jPanel14.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 230, -1, -1));
+
+        chart_panel_1.setBackground(new java.awt.Color(0, 0, 102));
+        chart_panel_1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                chart_panel_1MouseClicked(evt);
+            }
+        });
+        chart_panel_1.setLayout(new java.awt.BorderLayout());
+        jPanel14.add(chart_panel_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 910, 390));
+
+        jPanel12.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 930, 410));
+
+        Graphs1.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 940, 420));
+
+        jPanel1.add(Graphs1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 940, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -736,54 +930,222 @@ public class Home extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPanel10MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel10MousePressed
-     Home.setVisible(true);
-     Reports.setVisible(false);
+
     }//GEN-LAST:event_jPanel10MousePressed
 
     private void jPanel16MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel16MousePressed
-     Home.setVisible(false);
-     Reports.setVisible(true);
+   
     }//GEN-LAST:event_jPanel16MousePressed
 
     private void jLabel4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseReleased
-     Home.setVisible(true);
-     Reports.setVisible(false);
+        
     }//GEN-LAST:event_jLabel4MouseReleased
 
     private void jLabel2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseReleased
-     Home.setVisible(false);
-     Reports.setVisible(true);
+      
     }//GEN-LAST:event_jLabel2MouseReleased
 
     private void jPanel10MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel10MouseReleased
-     Home.setVisible(true);
-     Reports.setVisible(false);
+       
     }//GEN-LAST:event_jPanel10MouseReleased
 
     private void jLabel4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MousePressed
-     Home.setVisible(true);
-     Reports.setVisible(false);
+
     }//GEN-LAST:event_jLabel4MousePressed
 
     private void jLabel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MousePressed
-    Home.setVisible(false);
-    Reports.setVisible(true);
+
     }//GEN-LAST:event_jLabel2MousePressed
 
     private void jPanel16MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel16MouseReleased
-    Home.setVisible(false);
-    Reports.setVisible(true);
+    
     }//GEN-LAST:event_jPanel16MouseReleased
 
     private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
-    Security_pass sp = new Security_pass();
-        int x = JOptionPane.showConfirmDialog(null, "Confirm Exit!","Close",JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
-               if(x==JOptionPane.YES_OPTION){
-                dispose();
-                sp.setVisible(true);
+        Security_pass sp = new Security_pass();
+        int x = JOptionPane.showConfirmDialog(null, "Confirm Exit!", "Close", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+        if (x == JOptionPane.YES_OPTION) {
+            dispose();
+            sp.setVisible(true);
 //                  System.exit(0);
-               }
+        }
     }//GEN-LAST:event_jLabel13MouseClicked
+    public void execRealTime(){
+    while(true){
+    MyTask();
+    }
+    }
+    public void MyTask(){
+    Timer timee = new Timer();
+    timee.schedule(new TimerTask(){
+        @Override
+        public void run() {
+            graph1();
+        }
+    
+    },1000,1000);
+    }
+    public void graph1(){
+        Timer time = new Timer();
+        time.schedule(new TimerTask(){
+            @Override
+            public void run() {
+                try
+      {
+        java.sql.Connection conn = new MyConnection().ConnectDB();
+        java.sql.Statement sttmt = conn.createStatement();
+         final String SQL = "SELECT * FROM calculated_device_data";
+         final CategoryDataset dataset = new JDBCCategoryDataset(conn, SQL);
+         JFreeChart chart = ChartFactory.createBarChart("Histogram","Arrivals","Frequency", dataset, PlotOrientation.VERTICAL, false, false, false);
+        CategoryPlot catplot = chart.getCategoryPlot();
+//        catplot.setRangeGridlinePaint(Color.BLACK);
+        ChartPanel chartpanel = new ChartPanel(chart);
+        chart_panel.removeAll();
+        chart_panel.add(chartpanel, BorderLayout.CENTER);
+        chart_panel.validate();    
+      }
+    catch(Exception e){
+        JOptionPane.showMessageDialog(null, e);
+    }
+            }
+        
+        },1000,1000);
+    
+    }
+//    public void graph(){
+//        MyConnection m = new MyConnection();
+////        JDBCPieDataset dataset = new JDBCPieDataset(m.conn);
+//        double s1 = 0;
+//        double s2 = 0;
+//        double s3 = 0;
+//        try{
+//            DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+//            String sql = "Select * From `calculated_device_data`";
+//
+//        ps= conn.prepareStatement(sql);
+//        rs = ps.executeQuery();
+//        while (rs.next()) {
+//            s1 = rs.getDouble("sensor1_output");
+//            s2 = rs.getDouble("sensor2_output");
+//            s3 = rs.getDouble("sensor3_output");
+//            dataset.setValue(s3, s1, s1);
+//        }
+//        JFreeChart chart = ChartFactory.createBarChart("Call cost", "TypeOfCall", "SummaryOfCalls", dataset, PlotOrientation.VERTICAL, false, true, false);
+//        CategoryPlot p = chart.getCategoryPlot();
+//
+//         //p.setRangeGridlinePaint(Color.BLUE);
+//
+//        ChartPanel panel = new ChartPanel(chart);
+//        chart_panel.removeAll();
+//        chart_panel.add(panel,BorderLayout.CENTER);
+//        chart_panel.validate();
+////        panel.setVisible(true);
+////        panel.setSize(200, 200);
+////        display_graph.add(panel);
+//      }
+//        catch(Exception e){
+//        
+//        }
+//    }
+    
+    public void histogramChart(){
+        try{
+        java.sql.Connection conn = new MyConnection().ConnectDB();
+        java.sql.Statement sttmt = conn.createStatement();
+        String sql = "Select * From `arduino_messages`";
+        ResultSet rs=sttmt.executeQuery(sql);
+        DefaultCategoryDataset barChartData = new DefaultCategoryDataset();
+        barChartData.setValue(4, "Frequency", "0");
+        barChartData.setValue(8, "Frequency", "2");
+        barChartData.setValue(10, "Frequency", "4");
+        barChartData.setValue(11, "Frequency", "6");
+        barChartData.setValue(5, "Frequency", "8");
+        barChartData.setValue(9, "Frequency", "10");
+        barChartData.setValue(15, "Frequency", "12");
+
+        JFreeChart barChart = ChartFactory.createBarChart("Histogram of Arrivals", "Arrivals perminute", "Frequency", barChartData, PlotOrientation.VERTICAL, false, true, false);
+        CategoryPlot barChrt = barChart.getCategoryPlot();
+//        barChrt.setRangeGridlinePaint(Color.ORANGE);
+        
+        ChartPanel barPanel = new  ChartPanel(barChart);
+        chart_panel.removeAll();
+        chart_panel.add(barPanel,BorderLayout.CENTER);
+        chart_panel.validate();
+        }catch(Exception e){
+        
+        }
+    }
+    private void chart_panelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chart_panelMouseClicked
+//        DefaultCategoryDataset barChartData = new DefaultCategoryDataset();
+//        barChartData.setValue(4, "Frequency", "0");
+//        barChartData.setValue(8, "Frequency", "2");
+//        barChartData.setValue(10, "Frequency", "4");
+//        barChartData.setValue(11, "Frequency", "6");
+//        barChartData.setValue(5, "Frequency", "8");
+//        barChartData.setValue(9, "Frequency", "10");
+//        barChartData.setValue(15, "Frequency", "12");
+//
+//        JFreeChart barChart = ChartFactory.createBarChart("Histogram of Arrivals", "Arrivals perminute", "Frequency", barChartData, PlotOrientation.VERTICAL, false, true, false);
+//        CategoryPlot barChrt = barChart.getCategoryPlot();
+////        barChrt.setRangeGridlinePaint(Color.ORANGE);
+//        
+//        ChartPanel barPanel = new  ChartPanel(barChart);
+//        chart_panel.removeAll();
+//        chart_panel.add(barPanel,BorderLayout.CENTER);
+//        chart_panel.validate();
+    }//GEN-LAST:event_chart_panelMouseClicked
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+    Graphs.setVisible(true);
+    Home.setVisible(false);
+    Reports.setVisible(false);
+    
+    }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void jPanel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel13MouseClicked
+    Graphs.setVisible(true);
+    Home.setVisible(false);
+    Reports.setVisible(false);
+    }//GEN-LAST:event_jPanel13MouseClicked
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+    Home.setVisible(true);
+    Graphs.setVisible(false);
+    Graphs.setVisible(false);
+    }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void jPanel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel10MouseClicked
+    Home.setVisible(true);
+    Graphs.setVisible(false);
+    Graphs.setVisible(false);
+    }//GEN-LAST:event_jPanel10MouseClicked
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+    Reports.setVisible(true);
+    Home.setVisible(false);
+    Graphs.setVisible(false);
+    }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void jPanel16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel16MouseClicked
+    Reports.setVisible(true);
+    Home.setVisible(false);
+    Graphs.setVisible(false);
+    }//GEN-LAST:event_jPanel16MouseClicked
+
+    private void chart_panel_1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chart_panel_1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chart_panel_1MouseClicked
+
+    private void jLabel3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel3KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel3KeyPressed
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+    Graphs1.setVisible(true);
+    Reports.setVisible(false);
+    Home.setVisible(false);
+    Graphs.setVisible(false);
+    }//GEN-LAST:event_jLabel3MouseClicked
 
     /**
      * @param args the command line arguments
@@ -796,7 +1158,7 @@ public class Home extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -821,33 +1183,19 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Graphs;
+    private javax.swing.JPanel Graphs1;
     private javax.swing.JPanel Home;
     private javax.swing.JPanel Reports;
+    private javax.swing.JPanel chart_panel;
+    private javax.swing.JPanel chart_panel_1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
@@ -892,21 +1240,42 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel70;
     private javax.swing.JLabel jLabel71;
+    private javax.swing.JLabel jLabel72;
+    private javax.swing.JLabel jLabel73;
+    private javax.swing.JLabel jLabel74;
+    private javax.swing.JLabel jLabel75;
+    private javax.swing.JLabel jLabel76;
+    private javax.swing.JLabel jLabel77;
+    private javax.swing.JLabel jLabel78;
+    private javax.swing.JLabel jLabel79;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabel80;
+    private javax.swing.JLabel jLabel81;
+    private javax.swing.JLabel jLabel82;
+    private javax.swing.JLabel jLabel83;
+    private javax.swing.JLabel jLabel84;
+    private javax.swing.JLabel jLabel85;
+    private javax.swing.JLabel jLabel86;
+    private javax.swing.JLabel jLabel87;
+    private javax.swing.JLabel jLabel88;
+    private javax.swing.JLabel jLabel89;
+    private javax.swing.JLabel jLabel90;
+    private javax.swing.JLabel jLabel91;
+    private javax.swing.JLabel jLabel92;
+    private javax.swing.JLabel jLabel93;
+    private javax.swing.JLabel jLabel94;
+    private javax.swing.JLabel jLabel95;
+    private javax.swing.JLabel jLabel96;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
-    private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
-    private javax.swing.JPanel jPanel18;
-    private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel20;
+    private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel22;
     private javax.swing.JPanel jPanel23;
     private javax.swing.JPanel jPanel24;
@@ -918,8 +1287,19 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel30;
     private javax.swing.JPanel jPanel31;
+    private javax.swing.JPanel jPanel32;
+    private javax.swing.JPanel jPanel33;
     private javax.swing.JPanel jPanel34;
+    private javax.swing.JPanel jPanel35;
+    private javax.swing.JPanel jPanel36;
+    private javax.swing.JPanel jPanel37;
+    private javax.swing.JPanel jPanel38;
+    private javax.swing.JPanel jPanel39;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel40;
+    private javax.swing.JPanel jPanel41;
+    private javax.swing.JPanel jPanel42;
+    private javax.swing.JPanel jPanel43;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;

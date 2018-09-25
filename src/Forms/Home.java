@@ -5,6 +5,9 @@
  */
 package Forms;
 
+import com.sbix.jnotify.NPosition;
+import com.sbix.jnotify.NoticeType;
+import com.sbix.jnotify.NoticeWindow;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -221,6 +224,8 @@ public class Home extends javax.swing.JFrame {
         jpanel222 = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -1043,26 +1048,48 @@ public class Home extends javax.swing.JFrame {
         });
         jpanel222.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel12.setText("The Reading of Temperature, pH and Disolved Oxygen is Normal for today");
+        jPanel15.setBackground(new java.awt.Color(240, 148, 51));
+
+        jLabel12.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel12.setFont(new java.awt.Font("Microsoft Himalaya", 0, 24)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("This is an example notification message.");
+
+        jLabel17.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel17.setFont(new java.awt.Font("Microsoft Himalaya", 0, 24)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel17.setText("This message is sent depends on the highest reading ");
 
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
         jPanel15Layout.setHorizontalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel12)
-                .addContainerGap())
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel17))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
-                .addComponent(jLabel12)
-                .addContainerGap())
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
-        jpanel222.add(jPanel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 380, 40));
+        jpanel222.add(jPanel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 410, 80));
+
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jpanel222.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 30, -1, 20));
 
         jPanel14.add(jpanel222, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 910, 390));
 
@@ -1145,7 +1172,7 @@ public class Home extends javax.swing.JFrame {
         public void run() {
             graph1(); 
             graph2();
-            graph3();
+//            graph3();
         }
     },1000,1000);
     }
@@ -1322,17 +1349,6 @@ public class Home extends javax.swing.JFrame {
     Graphs.setVisible(false);
     }//GEN-LAST:event_jPanel16MouseClicked
 
-    private void jLabel3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel3KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel3KeyPressed
-
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-    Notif.setVisible(true);
-    Reports.setVisible(false);
-    Home.setVisible(false);
-    Graphs.setVisible(false);
-    }//GEN-LAST:event_jLabel3MouseClicked
-
     private void chart_panel_2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chart_panel_2MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_chart_panel_2MouseClicked
@@ -1381,6 +1397,24 @@ public class Home extends javax.swing.JFrame {
     chart_panel_3.setVisible(false);
     }//GEN-LAST:event_jPanel44MouseClicked
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    new NoticeWindow(NoticeType.WARNING_NOTIFICATION,
+    "The reading is getting high The reading is getting high The reading is getting high The reading is getting high!", 
+    NoticeWindow.ABORT, NPosition.CENTER);
+//    new NoticeWindow("This is a message top left", NPosition.TOP_LEFT);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jLabel3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel3KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel3KeyPressed
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        Notif.setVisible(true);
+        Reports.setVisible(false);
+        Home.setVisible(false);
+        Graphs.setVisible(false);
+    }//GEN-LAST:event_jLabel3MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1424,6 +1458,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel chart_panel;
     private javax.swing.JPanel chart_panel_2;
     private javax.swing.JPanel chart_panel_3;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1432,6 +1467,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

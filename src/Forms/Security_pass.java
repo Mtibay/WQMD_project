@@ -80,9 +80,17 @@ public class Security_pass extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        passcode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passcodeActionPerformed(evt);
+            }
+        });
         passcode.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 passcodeKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                passcodeKeyReleased(evt);
             }
         });
 
@@ -138,7 +146,8 @@ public class Security_pass extends javax.swing.JFrame {
 
     private void passcodeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passcodeKeyPressed
     if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            pass();
+        passs();
+//            JOptionPane.showMessageDialog(null, "Login Successful!");
         } else {
         }
     }//GEN-LAST:event_passcodeKeyPressed
@@ -150,31 +159,36 @@ public class Security_pass extends javax.swing.JFrame {
                   System.exit(0);
                }
     }//GEN-LAST:event_jLabel3MouseClicked
-    public void pass(){
+
+    private void passcodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passcodeActionPerformed
+   
+    }//GEN-LAST:event_passcodeActionPerformed
+
+    private void passcodeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passcodeKeyReleased
+
+    }//GEN-LAST:event_passcodeKeyReleased
+    public void passs(){
       String pass = passcode.getText();
-      Statement st;
       try  {
-          String sql="SELECT * FROM `login` WHERE passcode=?" ;
+          String sql="SELECT * FROM `login` WHERE passcode = ?" ;
           pst=conn.prepareStatement(sql);
                 pst.setString(1, passcode.getText());
                 rs=pst.executeQuery();
           
-          if(rs.next()){
+          if(rs.next()){ 
               JOptionPane.showMessageDialog(null, "Login Successful!");
               HF.setVisible(true);
               dispose();
           } 
-          else if("admin1234".equals(pass)){
-              JOptionPane.showMessageDialog(null, "Login Successful!");
-              HF.setVisible(true);
-              dispose();
-          }else{
+//          else if("admin1234".equals(pass)){
+//              JOptionPane.showMessageDialog(null, "Login Successful!");
+//              HF.setVisible(true);
+//              dispose(); 
+          else{
               JOptionPane.showMessageDialog(null, "Wrong passcode!","Access Denied",JOptionPane.ERROR_MESSAGE);
           }
       }catch(Exception e){
-//          JOptionPane.showMessageDialog(null, "Wrongs!");
-//          HF.setVisible(true);
-//                dispose();
+
       }
        
     }

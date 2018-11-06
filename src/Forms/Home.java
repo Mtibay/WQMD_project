@@ -23,6 +23,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TimerTask;
 import java.util.Timer;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 //import javax.management.timer.Timer;
 
@@ -91,9 +94,6 @@ public class Home extends javax.swing.JFrame {
         graph1();
         realTime();
         autoRun();
-        
-//        NotifTimer();
-        
     }
 
 
@@ -106,6 +106,7 @@ public class Home extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        settings = new javax.swing.JPopupMenu();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
@@ -304,7 +305,7 @@ public class Home extends javax.swing.JFrame {
         ph_output_home1 = new javax.swing.JLabel();
         tds_label1 = new javax.swing.JPanel();
         tds_output_home1 = new javax.swing.JLabel();
-        Notif = new javax.swing.JPanel();
+        Settings = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
@@ -313,9 +314,6 @@ public class Home extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jpanel222 = new javax.swing.JPanel();
-        jPanel15 = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -370,7 +368,7 @@ public class Home extends javax.swing.JFrame {
                 jLabel4MouseReleased(evt);
             }
         });
-        jPanel10.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, 120, -1));
+        jPanel10.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 120, -1));
 
         jPanel2.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 220, 80));
 
@@ -445,6 +443,11 @@ public class Home extends javax.swing.JFrame {
 
         jPanel20.setBackground(new java.awt.Color(91, 78, 121));
         jPanel20.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel20.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel20MouseClicked(evt);
+            }
+        });
         jPanel20.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel45.setBackground(new java.awt.Color(91, 78, 121));
@@ -453,6 +456,11 @@ public class Home extends javax.swing.JFrame {
         jPanel20.add(jPanel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 450, 90, 80));
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Settings-icon.png"))); // NOI18N
+        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel11MouseClicked(evt);
+            }
+        });
         jPanel20.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 50, 60));
 
         jPanel2.add(jPanel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, 90, 80));
@@ -1467,9 +1475,9 @@ public class Home extends javax.swing.JFrame {
 
         jPanel1.add(Reports, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 940, -1));
 
-        Notif.setBackground(new java.awt.Color(153, 153, 153));
-        Notif.setName("Reports_Panel"); // NOI18N
-        Notif.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        Settings.setBackground(new java.awt.Color(153, 153, 153));
+        Settings.setName("Reports_Panel"); // NOI18N
+        Settings.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel8.setBackground(new java.awt.Color(5, 9, 131));
 
@@ -1494,11 +1502,11 @@ public class Home extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        Notif.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 940, 40));
+        Settings.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 940, 40));
 
         jPanel11.setBackground(new java.awt.Color(192, 193, 196));
         jPanel11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        Notif.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 940, 90));
+        Settings.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 940, 90));
 
         jPanel12.setBackground(new java.awt.Color(153, 153, 153));
         jPanel12.setName(""); // NOI18N
@@ -1517,49 +1525,13 @@ public class Home extends javax.swing.JFrame {
             }
         });
         jpanel222.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel15.setBackground(new java.awt.Color(240, 148, 51));
-
-        jLabel12.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel12.setFont(new java.awt.Font("Microsoft Himalaya", 0, 24)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("This is an example notification message.");
-
-        jLabel17.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel17.setFont(new java.awt.Font("Microsoft Himalaya", 0, 24)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel17.setText("This message is sent depends on the highest reading ");
-
-        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
-        jPanel15.setLayout(jPanel15Layout);
-        jPanel15Layout.setHorizontalGroup(
-            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel15Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel17))
-                .addContainerGap(48, Short.MAX_VALUE))
-        );
-        jPanel15Layout.setVerticalGroup(
-            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel15Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
-        );
-
-        jpanel222.add(jPanel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 410, 80));
-
         jPanel14.add(jpanel222, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 910, 390));
 
         jPanel12.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 930, 410));
 
-        Notif.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 940, 420));
+        Settings.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 940, 420));
 
-        jPanel1.add(Notif, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 940, -1));
+        jPanel1.add(Settings, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 940, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1617,27 +1589,6 @@ public class Home extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jLabel13MouseClicked
 
-//    public void graph4() throws SQLException { 
-//        java.sql.Connection conn = new MyConnection().ConnectDB();
-//        java.sql.Statement sttmt = conn.createStatement();
-//        final String SQL = "SELECT * FROM calculated_device_data";
-//final CategoryDataset dataset = new JDBCCategoryDataset(conn, SQL);
-//final BoxAndWhiskerCategoryDataset bAndWCategoryDataset = createDataset(dataset);
-//JFreeChart chart = ChartFactory.creatBoxAndWhiskerChart("","","",bAndWCategoryDataset, rootPaneCheckingEnabled);
-//}
-//
-///**
-//  * @CategoryDataSet
-//  *
-//*/
-//private BoxAndWhiskerCategoryDataset createDataset(CategoryDataset dataset[]) {
-//	BoxAndWhiskerCategoryDataset returnDataset = new DefaultBoxAndWhiskerCategoryDataset();
-//	for(CategoryDataset data : dataset) {
-//		returnDataset.set(dataset);
-//	}
-//	return returnDataset;
-//
-//}
     public void autoRun(){
         Timer time = new Timer();
         time.schedule(new TimerTask(){
@@ -1648,8 +1599,39 @@ public class Home extends javax.swing.JFrame {
             ValuesCondition3();
             Identifier();
             }
-        },1000,1000);
+        },2000,2000);
     
+    }
+    
+      public void NotifHigh(){
+                new NoticeWindow(NoticeType.ERROR_NOTIFICATION,
+                "The reading resulted to high!", 
+                NoticeWindow.LONG_DELAY, NPosition.CENTER);  
+    }
+      
+    public void NotifMeduim() throws InterruptedException{
+                new NoticeWindow(NoticeType.SUCCESS_NOTIFICATION,
+                "The reading resulted to Normal!", 
+                NoticeWindow.LONG_DELAY, NPosition.CENTER);  
+                TimeUnit.SECONDS.sleep(15000);
+    }
+    
+    public void NotifLow(){
+                new NoticeWindow(NoticeType.WARNING_NOTIFICATION,
+                "The reading resulted to low!", 
+                NoticeWindow.LONG_DELAY, NPosition.CENTER);
+    }
+    
+    public void realTime(){
+    Timer time = new Timer();
+    time.schedule(new TimerTask(){
+        @Override
+        public void run() {
+            graph1(); 
+            graph2();
+            graph3();
+        }
+    },2000,2000);
     }
     public void ValuesCondition1(){
         Statement st;
@@ -1693,11 +1675,17 @@ public class Home extends javax.swing.JFrame {
             high_temp1.setVisible(false);
             temp_level.setText("low");
         }
-        conn.close();
         }
         }catch(Exception e){
     
     }
+        finally{
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                
+            }
+        }
         
     }
     
@@ -1740,11 +1728,17 @@ public class Home extends javax.swing.JFrame {
             low_ph1.setVisible(false);
             ph_level.setText("high");
         }
-        conn.close();
         }
         }catch(Exception e){
     
     }
+        finally{
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                
+            }
+        }
         
     }
 
@@ -1813,11 +1807,16 @@ public class Home extends javax.swing.JFrame {
             meduim_tds1.setVisible(false);
             tds_level.setText("high");
         }
-        conn.close();
         }
         }catch(Exception e){
     
-    }
+    }finally{
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                
+            }
+        }
         
     }
     public void Identifier(){
@@ -1842,6 +1841,7 @@ public class Home extends javax.swing.JFrame {
                 e_effects.setText(highStatsEE);
                 h_risks.setText(highStatsHR);
                 e_status.setText(highStatsES);
+//                NotifHigh();
             }else if (m.equals(temp_level.getText()) && m.equals(ph_level.getText()) && m.equals(tds_level.getText())){
                 low.setVisible(false);
                 meduim.setVisible(true);
@@ -1849,6 +1849,7 @@ public class Home extends javax.swing.JFrame {
                 e_effects.setText(meduimStatsEE);
                 h_risks.setText(meduimStatsHR);
                 e_status.setText(meduimStatsES);
+//                NotifMeduim();
             }else if (l.equals(temp_level.getText()) && l.equals(ph_level.getText()) && l.equals(tds_level.getText())){
                 low.setVisible(true);
                 meduim.setVisible(false);
@@ -1856,6 +1857,7 @@ public class Home extends javax.swing.JFrame {
                 e_effects.setText(lowStatsEE);
                 h_risks.setText(lowStatsHR);
                 e_status.setText(lowStatsES);
+//                NotifLow();
             }else if (h.equals(temp_level.getText()) && m.equals(ph_level.getText()) && m.equals(tds_level.getText())){
                 low.setVisible(false);
                 meduim.setVisible(false);
@@ -1863,6 +1865,7 @@ public class Home extends javax.swing.JFrame {
                 e_effects.setText(highStatsEE);
                 h_risks.setText(highStatsHR);
                 e_status.setText(highStatsES);
+//                NotifHigh();
             }else if (l.equals(temp_level.getText()) && m.equals(ph_level.getText()) && m.equals(tds_level.getText())){
                 low.setVisible(false);
                 meduim.setVisible(true);
@@ -1870,6 +1873,7 @@ public class Home extends javax.swing.JFrame {
                 e_effects.setText(meduimStatsEE);
                 h_risks.setText(meduimStatsHR);
                 e_status.setText(meduimStatsES);
+//                NotifMeduim();
             }else if (m.equals(temp_level.getText()) && h.equals(ph_level.getText()) && m.equals(tds_level.getText())){
                 low.setVisible(false);
                 meduim.setVisible(false);
@@ -1877,6 +1881,7 @@ public class Home extends javax.swing.JFrame {
                 e_effects.setText(highStatsEE);
                 h_risks.setText(highStatsHR);
                 e_status.setText(highStatsES);
+//                NotifHigh();
             }else if (m.equals(temp_level.getText()) && l.equals(ph_level.getText()) && m.equals(tds_level.getText())){
                 low.setVisible(false);
                 meduim.setVisible(true);
@@ -1884,6 +1889,7 @@ public class Home extends javax.swing.JFrame {
                 e_effects.setText(meduimStatsEE);
                 h_risks.setText(meduimStatsHR);
                 e_status.setText(meduimStatsES);
+//                NotifMeduim();
             }else if (m.equals(temp_level.getText()) && m.equals(ph_level.getText()) && h.equals(tds_level.getText())){
                 low.setVisible(false);
                 meduim.setVisible(false);
@@ -1891,6 +1897,7 @@ public class Home extends javax.swing.JFrame {
                 e_effects.setText(highStatsEE);
                 h_risks.setText(highStatsHR);
                 e_status.setText(highStatsES);
+//                NotifHigh();
             }else if (m.equals(temp_level.getText()) && m.equals(ph_level.getText()) && l.equals(tds_level.getText())){
                 low.setVisible(false);
                 meduim.setVisible(true);
@@ -1898,6 +1905,7 @@ public class Home extends javax.swing.JFrame {
                 e_effects.setText(meduimStatsEE);
                 h_risks.setText(meduimStatsHR);
                 e_status.setText(meduimStatsES);
+//                NotifMeduim();
             }else if (h.equals(temp_level.getText()) && l.equals(ph_level.getText()) && l.equals(tds_level.getText())){
                 low.setVisible(false);
                 meduim.setVisible(false);
@@ -1905,6 +1913,7 @@ public class Home extends javax.swing.JFrame {
                 e_effects.setText(highStatsEE);
                 h_risks.setText(highStatsHR);
                 e_status.setText(highStatsES);
+//                NotifHigh();
             }else if (m.equals(temp_level.getText()) && l.equals(ph_level.getText()) && l.equals(tds_level.getText())){
                 low.setVisible(false);
                 meduim.setVisible(true);
@@ -1912,6 +1921,7 @@ public class Home extends javax.swing.JFrame {
                 e_effects.setText(meduimStatsEE);
                 h_risks.setText(meduimStatsHR);
                 e_status.setText(meduimStatsES);
+//                NotifMeduim();
             }else if (l.equals(temp_level.getText()) && h.equals(ph_level.getText()) && l.equals(tds_level.getText())){
                 low.setVisible(false);
                 meduim.setVisible(false);
@@ -1919,6 +1929,7 @@ public class Home extends javax.swing.JFrame {
                 e_effects.setText(highStatsEE);
                 h_risks.setText(highStatsHR);
                 e_status.setText(highStatsES);
+//                NotifHigh();
             }else if (l.equals(temp_level.getText()) && m.equals(ph_level.getText()) && l.equals(tds_level.getText())){
                 low.setVisible(false);
                 meduim.setVisible(true);
@@ -1926,6 +1937,7 @@ public class Home extends javax.swing.JFrame {
                 e_effects.setText(meduimStatsEE);
                 h_risks.setText(meduimStatsHR);
                 e_status.setText(meduimStatsES);
+//                NotifMeduim();
             }else if (l.equals(temp_level.getText()) && l.equals(ph_level.getText()) && h.equals(tds_level.getText())){
                 low.setVisible(false);
                 meduim.setVisible(false);
@@ -1933,6 +1945,7 @@ public class Home extends javax.swing.JFrame {
                 e_effects.setText(highStatsEE);
                 h_risks.setText(highStatsHR);
                 e_status.setText(highStatsES);
+//                NotifHigh();
             }else if (l.equals(temp_level.getText()) && l.equals(ph_level.getText()) && m.equals(tds_level.getText())){
                 low.setVisible(false);
                 meduim.setVisible(true);
@@ -1940,46 +1953,17 @@ public class Home extends javax.swing.JFrame {
                 e_effects.setText(meduimStatsEE);
                 h_risks.setText(meduimStatsHR);
                 e_status.setText(meduimStatsES);
+//                NotifMeduim();
             }
         }catch(Exception e){
             e.printStackTrace();
-        }
-    }
-    
-    public void NotifTimer(){
-    Timer timee = new Timer();
-    timee.schedule(new TimerTask(){
-        @Override
-        public void run() {
-            Notif();
-        }
-    
-    },5000,5000);
-    }
-      public void Notif(){
-                new NoticeWindow(NoticeType.WARNING_NOTIFICATION,
-                "The reading is getting high The reading is getting high The reading is getting high The reading is getting high!", 
-                NoticeWindow.LONG_DELAY, NPosition.CENTER);  
-                Timer time = new Timer();
-                time.schedule(new TimerTask(){
-                    @Override
-                    public void run() {
-                       JOptionPane.showMessageDialog(null, "This is and example of a notification message","", JOptionPane.WARNING_MESSAGE);
-                        
-                    }
+        }finally{
+            try {
+                conn.close();
+            } catch (SQLException ex) {
                 
-                },5000,5000);
-    }
-    public void realTime(){
-    Timer time = new Timer();
-    time.schedule(new TimerTask(){
-        @Override
-        public void run() {
-            graph1(); 
-            graph2();
-            graph3();
+            }
         }
-    },1000,1000);
     }
     public void graph1(){
     try{
@@ -2015,10 +1999,7 @@ public class Home extends javax.swing.JFrame {
         ChartPanel chartpanel = new ChartPanel(chart2);
         chart_panel_3.removeAll();
         chart_panel_3.add(chartpanel, BorderLayout.CENTER);
-        chart_panel_3.validate(); 
-//        chart_panel_2.removeAll();
-//        chart_panel_2.add(chartpanel, BorderLayout.CENTER);
-//        chart_panel_2.validate();
+        chart_panel_3.validate();   
         conn.close();
       }
     catch(Exception e){
@@ -2077,7 +2058,13 @@ public class Home extends javax.swing.JFrame {
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
     Home.setVisible(true);
     Graphs.setVisible(false);
-    Graphs.setVisible(false);
+//    Graphs.setVisible(false);        
+//        try {
+//            NotifMeduim();
+//        } catch (InterruptedException ex) {
+//            
+//        }
+
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jPanel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel10MouseClicked
@@ -2164,6 +2151,16 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_temp_output_home1MouseClicked
 
+    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+    Settings set = new Settings();
+    set.setVisible(true);
+    }//GEN-LAST:event_jLabel11MouseClicked
+
+    private void jPanel20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel20MouseClicked
+    Settings set = new Settings();
+    set.setVisible(true);
+    }//GEN-LAST:event_jPanel20MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -2202,8 +2199,8 @@ public class Home extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JPanel Graphs;
     private javax.swing.JPanel Home;
-    private javax.swing.JPanel Notif;
     private javax.swing.JPanel Reports;
+    private javax.swing.JPanel Settings;
     private javax.swing.JPanel chart_panel;
     private javax.swing.JPanel chart_panel_2;
     private javax.swing.JPanel chart_panel_3;
@@ -2240,7 +2237,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel117;
     private javax.swing.JLabel jLabel118;
     private javax.swing.JLabel jLabel119;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel120;
     private javax.swing.JLabel jLabel121;
     private javax.swing.JLabel jLabel122;
@@ -2262,7 +2258,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel32;
@@ -2335,7 +2330,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
-    private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;
@@ -2399,6 +2393,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel sentence_degree3;
     private javax.swing.JLabel sentence_degree4;
     private javax.swing.JLabel sentence_degree5;
+    private javax.swing.JPopupMenu settings;
     private javax.swing.JPanel tds_label;
     private javax.swing.JPanel tds_label1;
     private javax.swing.JLabel tds_level;

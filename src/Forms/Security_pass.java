@@ -179,12 +179,9 @@ public class Security_pass extends javax.swing.JFrame {
               JOptionPane.showMessageDialog(null, "Login Successful!");
               HF.setVisible(true);
               dispose();
-          } 
-//          else if("admin1234".equals(pass)){
-//              JOptionPane.showMessageDialog(null, "Login Successful!");
-//              HF.setVisible(true);
-//              dispose(); 
+          }
           else{
+              passcode.setText("");
               JOptionPane.showMessageDialog(null, "Wrong passcode!","Access Denied",JOptionPane.ERROR_MESSAGE);
           }
       }catch(Exception e){

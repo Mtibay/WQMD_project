@@ -1,4 +1,3 @@
-
 package Forms;
 
 import java.awt.BorderLayout;
@@ -20,9 +19,10 @@ import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.renderer.category.BoxAndWhiskerRenderer;
 import org.jfree.data.statistics.DefaultBoxAndWhiskerCategoryDataset;
 
-public class BoxAndWhiskerDemo {
+/** @see https://stackoverflow.com/questions/6844759 */
+public class BoxAndWhisker {
 
-    private static final int COLS = 0;
+    private static final int COLS = 20;
     private static final int VISIBLE = 4;
     private static final int ROWS = 5;
     private static final int VALUES = 10;
@@ -35,7 +35,7 @@ public class BoxAndWhiskerDemo {
     private JPanel controlPanel;
     private int start = 0;
 
-    public BoxAndWhiskerDemo() {
+    public BoxAndWhisker() {
         createData();
         createDataset(start);
         createChartPanel();
@@ -130,7 +130,7 @@ public class BoxAndWhiskerDemo {
             public void run() {
                 JFrame frame = new JFrame();
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                BoxAndWhiskerDemo demo = new BoxAndWhiskerDemo();
+                BoxAndWhisker demo = new BoxAndWhisker();
                 frame.add(demo.getChartPanel(), BorderLayout.CENTER);
                 frame.add(demo.getControlPanel(), BorderLayout.SOUTH);
                 frame.pack();

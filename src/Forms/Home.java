@@ -59,6 +59,8 @@ public class Home extends javax.swing.JFrame {
     Connection conn=null;
     PreparedStatement pst=null;
     ResultSet rs=null;
+    Statement st = null;
+    int gggg = 0;
     private static final LogContext LOGGER = Log.createContext(Home.class);
     
     
@@ -75,9 +77,9 @@ public class Home extends javax.swing.JFrame {
         chart_panel.setVisible(true);
         chart_panel_2.setVisible(false);
         chart_panel_3.setVisible(false);
-        meduim.setVisible(false);
-        high.setVisible(false);
-        low.setVisible(false);
+        meduim11.setVisible(false);
+        high11.setVisible(false);
+        low11.setVisible(false);
         temp_level.setVisible(false);
         ph_level.setVisible(false);
         tds_level.setVisible(false);
@@ -90,10 +92,22 @@ public class Home extends javax.swing.JFrame {
         meduim_tds.setVisible(false);
         low_tds.setVisible(false);
         high_tds.setVisible(false);
-//        histogramChart();
+        inactivedev.setVisible(false);
+        T1.setVisible(false);
         graph1();
         realTime();
-        autoRun();
+        Identifier();
+        new java.util.Timer().schedule( 
+        new java.util.TimerTask() {
+            @Override
+            public void run() {
+                notifCon();
+            }
+        }, 
+        5000 
+);
+        
+        
     }
 
 
@@ -110,6 +124,8 @@ public class Home extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
@@ -137,19 +153,20 @@ public class Home extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
-        chart_panel = new javax.swing.JPanel();
         chart_panel_2 = new javax.swing.JPanel();
+        chart_panel = new javax.swing.JPanel();
         chart_panel_3 = new javax.swing.JPanel();
         Home = new javax.swing.JPanel();
         jPanel22 = new javax.swing.JPanel();
         jLabel32 = new javax.swing.JLabel();
         jLabel58 = new javax.swing.JLabel();
-        jLabel61 = new javax.swing.JLabel();
+        inactivedev = new javax.swing.JLabel();
+        activedev = new javax.swing.JLabel();
         jPanel23 = new javax.swing.JPanel();
         jLabel64 = new javax.swing.JLabel();
         jLabel110 = new javax.swing.JLabel();
         time_value = new javax.swing.JLabel();
-        loc_value2 = new javax.swing.JLabel();
+        loc_value = new javax.swing.JLabel();
         jPanel24 = new javax.swing.JPanel();
         jPanel25 = new javax.swing.JPanel();
         jLabel34 = new javax.swing.JLabel();
@@ -214,6 +231,7 @@ public class Home extends javax.swing.JFrame {
         ph_level = new javax.swing.JLabel();
         tds_level = new javax.swing.JLabel();
         temp_level = new javax.swing.JLabel();
+        T1 = new javax.swing.JLabel();
         jPanel34 = new javax.swing.JPanel();
         jLabel62 = new javax.swing.JLabel();
         jLabel63 = new javax.swing.JLabel();
@@ -233,9 +251,9 @@ public class Home extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         e_status = new javax.swing.JTextArea();
         jPanel17 = new javax.swing.JPanel();
-        high = new javax.swing.JLabel();
-        meduim = new javax.swing.JLabel();
-        low = new javax.swing.JLabel();
+        high11 = new javax.swing.JLabel();
+        meduim11 = new javax.swing.JLabel();
+        low11 = new javax.swing.JLabel();
         Reports = new javax.swing.JPanel();
         jPanel21 = new javax.swing.JPanel();
         jPanel32 = new javax.swing.JPanel();
@@ -254,8 +272,6 @@ public class Home extends javax.swing.JFrame {
         jLabel89 = new javax.swing.JLabel();
         jLabel92 = new javax.swing.JLabel();
         jLabel93 = new javax.swing.JLabel();
-        jPanel42 = new javax.swing.JPanel();
-        jPanel43 = new javax.swing.JPanel();
         jLabel95 = new javax.swing.JLabel();
         jLabel96 = new javax.swing.JLabel();
         meduim_tds1 = new javax.swing.JPanel();
@@ -305,6 +321,10 @@ public class Home extends javax.swing.JFrame {
         ph_output_home1 = new javax.swing.JLabel();
         tds_label1 = new javax.swing.JPanel();
         tds_output_home1 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        reports_suggestion = new javax.swing.JTextArea();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        reports_findings = new javax.swing.JTextArea();
         Settings = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -325,19 +345,13 @@ public class Home extends javax.swing.JFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel9.setBackground(new java.awt.Color(118, 119, 132));
+        jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel9.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(83, 25, -1, -1));
 
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 220, Short.MAX_VALUE)
-        );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 90, Short.MAX_VALUE)
-        );
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo1.png"))); // NOI18N
+        jPanel9.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 130, 110));
 
-        jPanel2.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 220, 90));
+        jPanel2.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 140));
 
         jPanel10.setBackground(new java.awt.Color(4, 6, 70));
         jPanel10.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -524,17 +538,17 @@ public class Home extends javax.swing.JFrame {
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel9.setFont(new java.awt.Font("Microsoft Himalaya", 0, 36)); // NOI18N
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/asull.png"))); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon_blue.png"))); // NOI18N
         jLabel9.setText("pH");
-        jPanel5.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
+        jPanel5.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, 30));
 
         jLabel10.setFont(new java.awt.Font("Microsoft Himalaya", 0, 36)); // NOI18N
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/berdee.png"))); // NOI18N
-        jLabel10.setText("Disolved Oxygen");
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon_green.png"))); // NOI18N
+        jLabel10.setText("Total Disolved Oxygen");
         jPanel5.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, 30));
 
         jLabel15.setFont(new java.awt.Font("Microsoft Himalaya", 0, 36)); // NOI18N
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pullla.png"))); // NOI18N
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon_redd.png"))); // NOI18N
         jLabel15.setText("Temperature");
         jPanel5.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));
 
@@ -632,15 +646,6 @@ public class Home extends javax.swing.JFrame {
 
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        chart_panel.setBackground(new java.awt.Color(0, 0, 102));
-        chart_panel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                chart_panelMouseClicked(evt);
-            }
-        });
-        chart_panel.setLayout(new java.awt.BorderLayout());
-        jPanel7.add(chart_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 910, 390));
-
         chart_panel_2.setBackground(new java.awt.Color(0, 0, 102));
         chart_panel_2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -648,6 +653,16 @@ public class Home extends javax.swing.JFrame {
             }
         });
         chart_panel_2.setLayout(new java.awt.BorderLayout());
+
+        chart_panel.setBackground(new java.awt.Color(0, 0, 102));
+        chart_panel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                chart_panelMouseClicked(evt);
+            }
+        });
+        chart_panel.setLayout(new java.awt.BorderLayout());
+        chart_panel_2.add(chart_panel, java.awt.BorderLayout.PAGE_START);
+
         jPanel7.add(chart_panel_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 910, 390));
 
         chart_panel_3.setBackground(new java.awt.Color(0, 0, 102));
@@ -686,10 +701,15 @@ public class Home extends javax.swing.JFrame {
         jLabel58.setToolTipText("");
         jPanel22.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 50));
 
-        jLabel61.setFont(new java.awt.Font("Microsoft Himalaya", 1, 35)); // NOI18N
-        jLabel61.setForeground(new java.awt.Color(0, 176, 2));
-        jLabel61.setText("Active");
-        jPanel22.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 10, -1, 30));
+        inactivedev.setFont(new java.awt.Font("Microsoft Himalaya", 1, 35)); // NOI18N
+        inactivedev.setForeground(new java.awt.Color(255, 0, 0));
+        inactivedev.setText("Inactive");
+        jPanel22.add(inactivedev, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 10, -1, 30));
+
+        activedev.setFont(new java.awt.Font("Microsoft Himalaya", 1, 35)); // NOI18N
+        activedev.setForeground(new java.awt.Color(0, 176, 2));
+        activedev.setText("Active");
+        jPanel22.add(activedev, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 10, -1, 30));
 
         Home.add(jPanel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 940, 40));
 
@@ -708,9 +728,9 @@ public class Home extends javax.swing.JFrame {
         time_value.setText("?");
         jPanel23.add(time_value, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, 460, -1));
 
-        loc_value2.setFont(new java.awt.Font("Microsoft Himalaya", 1, 35)); // NOI18N
-        loc_value2.setText("?");
-        jPanel23.add(loc_value2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 460, -1));
+        loc_value.setFont(new java.awt.Font("Microsoft Himalaya", 1, 35)); // NOI18N
+        loc_value.setText("?");
+        jPanel23.add(loc_value, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 460, -1));
 
         Home.add(jPanel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 940, 90));
 
@@ -824,7 +844,7 @@ public class Home extends javax.swing.JFrame {
         jPanel25.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, -1, -1));
 
         jLabel53.setFont(new java.awt.Font("Microsoft Himalaya", 0, 24)); // NOI18N
-        jLabel53.setText("Oxygen ");
+        jLabel53.setText("TDS");
         jPanel25.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, -1, -1));
 
         tds_label.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -1015,6 +1035,9 @@ public class Home extends javax.swing.JFrame {
         temp_level.setText("LEVEL");
         jPanel25.add(temp_level, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 120, -1, -1));
 
+        T1.setText("T");
+        jPanel25.add(T1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 240, -1, -1));
+
         jPanel24.add(jPanel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 460, 410));
 
         jPanel34.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1088,20 +1111,40 @@ public class Home extends javax.swing.JFrame {
         jPanel17.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel17.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        high.setFont(new java.awt.Font("Microsoft Himalaya", 1, 48)); // NOI18N
-        high.setForeground(new java.awt.Color(153, 0, 0));
-        high.setText("High");
-        jPanel17.add(high, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, 40));
+        high11.setFont(new java.awt.Font("Microsoft Himalaya", 1, 48)); // NOI18N
+        high11.setForeground(new java.awt.Color(153, 0, 0));
+        high11.setText("High");
+        high11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                high11MouseClicked(evt);
+            }
+        });
+        jPanel17.add(high11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, 40));
 
-        meduim.setFont(new java.awt.Font("Microsoft Himalaya", 1, 48)); // NOI18N
-        meduim.setForeground(new java.awt.Color(0, 157, 2));
-        meduim.setText("Meduim");
-        jPanel17.add(meduim, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, 40));
+        meduim11.setFont(new java.awt.Font("Microsoft Himalaya", 1, 48)); // NOI18N
+        meduim11.setForeground(new java.awt.Color(0, 157, 2));
+        meduim11.setText("Meduim");
+        meduim11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                meduim11MouseClicked(evt);
+            }
+        });
+        jPanel17.add(meduim11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, 40));
 
-        low.setFont(new java.awt.Font("Microsoft Himalaya", 1, 48)); // NOI18N
-        low.setForeground(new java.awt.Color(255, 118, 27));
-        low.setText("Low");
-        jPanel17.add(low, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, 40));
+        low11.setFont(new java.awt.Font("Microsoft Himalaya", 1, 48)); // NOI18N
+        low11.setForeground(new java.awt.Color(255, 118, 27));
+        low11.setText("Low");
+        low11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                low11MouseClicked(evt);
+            }
+        });
+        low11.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                low11KeyPressed(evt);
+            }
+        });
+        jPanel17.add(low11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, 40));
 
         jPanel34.add(jPanel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, 150, 50));
 
@@ -1158,8 +1201,8 @@ public class Home extends javax.swing.JFrame {
         jPanel35.add(jLabel76, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, -1, 90));
 
         jLabel81.setFont(new java.awt.Font("Microsoft Himalaya", 1, 24)); // NOI18N
-        jLabel81.setText("WQMD FINDINGS:");
-        jPanel35.add(jLabel81, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 200, -1, -1));
+        jLabel81.setText("WQMD SUGGESTION:");
+        jPanel35.add(jLabel81, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 210, -1, -1));
 
         jLabel82.setFont(new java.awt.Font("Microsoft Himalaya", 0, 24)); // NOI18N
         jLabel82.setText("Reading");
@@ -1187,43 +1230,13 @@ public class Home extends javax.swing.JFrame {
         jLabel93.setText("Oxygen ");
         jPanel35.add(jLabel93, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, -1, -1));
 
-        jPanel42.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        javax.swing.GroupLayout jPanel42Layout = new javax.swing.GroupLayout(jPanel42);
-        jPanel42.setLayout(jPanel42Layout);
-        jPanel42Layout.setHorizontalGroup(
-            jPanel42Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 336, Short.MAX_VALUE)
-        );
-        jPanel42Layout.setVerticalGroup(
-            jPanel42Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 106, Short.MAX_VALUE)
-        );
-
-        jPanel35.add(jPanel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 70, 340, 110));
-
-        jPanel43.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        javax.swing.GroupLayout jPanel43Layout = new javax.swing.GroupLayout(jPanel43);
-        jPanel43.setLayout(jPanel43Layout);
-        jPanel43Layout.setHorizontalGroup(
-            jPanel43Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 336, Short.MAX_VALUE)
-        );
-        jPanel43Layout.setVerticalGroup(
-            jPanel43Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 106, Short.MAX_VALUE)
-        );
-
-        jPanel35.add(jPanel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 230, -1, -1));
-
         jLabel95.setFont(new java.awt.Font("Microsoft Himalaya", 0, 24)); // NOI18N
         jLabel95.setText("Reading");
         jPanel35.add(jLabel95, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
 
         jLabel96.setFont(new java.awt.Font("Microsoft Himalaya", 1, 24)); // NOI18N
-        jLabel96.setText("WQMD SUGGESTS:");
-        jPanel35.add(jLabel96, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 40, -1, -1));
+        jLabel96.setText("WQMD FINDINGS:");
+        jPanel35.add(jLabel96, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 10, -1, -1));
 
         meduim_tds1.setBackground(new java.awt.Color(255, 135, 16));
         meduim_tds1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -1469,6 +1482,28 @@ public class Home extends javax.swing.JFrame {
 
         jPanel35.add(tds_label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, 150, -1));
 
+        jScrollPane6.setAutoscrolls(true);
+
+        reports_suggestion.setEditable(false);
+        reports_suggestion.setColumns(20);
+        reports_suggestion.setLineWrap(true);
+        reports_suggestion.setRows(5);
+        reports_suggestion.setText("- The water did not affect any water species in the area");
+        jScrollPane6.setViewportView(reports_suggestion);
+
+        jPanel35.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 240, 430, 160));
+
+        jScrollPane7.setAutoscrolls(true);
+
+        reports_findings.setEditable(false);
+        reports_findings.setColumns(20);
+        reports_findings.setLineWrap(true);
+        reports_findings.setRows(5);
+        reports_findings.setText("- The water did not affect any water species in the area");
+        jScrollPane7.setViewportView(reports_findings);
+
+        jPanel35.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, 440, 160));
+
         jPanel33.add(jPanel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 930, 410));
 
         Reports.add(jPanel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 940, 420));
@@ -1585,41 +1620,119 @@ public class Home extends javax.swing.JFrame {
         if (x == JOptionPane.YES_OPTION) {
             dispose();
             sp.setVisible(true);
-//                  System.exit(0);
         }
     }//GEN-LAST:event_jLabel13MouseClicked
-
-    public void autoRun(){
-        Timer time = new Timer();
-        time.schedule(new TimerTask(){
-            @Override
-            public void run() {
-            ValuesCondition1();
-            ValuesCondition2();
-            ValuesCondition3();
-            Identifier();
-            }
-        },2000,2000);
     
+    public void devicestatus(){
+        if(temp_output_home.getText().equals("0.0°C") && ph_output_home.getText().equals("0.0ph") && tds_output_home.getText().equals("0.0ppm")){
+           inactivedev.setVisible(true);
+           activedev.setVisible(false);
+        }
+        else
+        {
+            activedev.setVisible(true);
+            inactivedev.setVisible(false);
+        }
     }
     
-      public void NotifHigh(){
+      public void NotifHigh() throws InterruptedException{
                 new NoticeWindow(NoticeType.ERROR_NOTIFICATION,
                 "The reading resulted to high!", 
-                NoticeWindow.LONG_DELAY, NPosition.CENTER);  
+                NoticeWindow.LONG_DELAY, NPosition.CENTER); 
     }
       
     public void NotifMeduim() throws InterruptedException{
                 new NoticeWindow(NoticeType.SUCCESS_NOTIFICATION,
                 "The reading resulted to Normal!", 
                 NoticeWindow.LONG_DELAY, NPosition.CENTER);  
-                TimeUnit.SECONDS.sleep(15000);
     }
     
-    public void NotifLow(){
+    public void NotifLow() throws InterruptedException{
                 new NoticeWindow(NoticeType.WARNING_NOTIFICATION,
                 "The reading resulted to low!", 
                 NoticeWindow.LONG_DELAY, NPosition.CENTER);
+    }
+    
+    public void notifCon(){
+        
+        String sql = "SELECT COUNT(cdd_id) FROM calculated_device_data WHERE DATE(date_created) = CURDATE()";
+        int i, j = 0;
+        String l = "low";
+        try{
+            
+            conn=MyConnection.ConnectDB();
+            st = conn.createStatement();
+            rs = st.executeQuery(sql);
+            for(i = 0; i < 10000000; i++){
+                System.out.println(j);
+                System.out.println(i);
+                if(j == 0 && T1.getText().equals("low")){
+                    NotifLow();
+                    j = 1;
+                }
+                else if(j == 0 && T1.getText().equals("high")){
+                    NotifHigh();  
+                    j = 2;
+                }
+                else if(j == 0 && T1.getText().equals("meduim")){
+                    NotifMeduim();
+                    j = 3;
+                }
+                else if(j == 2 && T1.getText().equals("low")){
+                    NotifLow();
+                    j = 1;
+                }
+                else if(j == 3 && T1.getText().equals("low")){
+                    NotifLow();
+                    j = 1;
+                }
+                else if(j == 1 && T1.getText().equals("meduim")){
+                    NotifMeduim();
+                    j = 3;
+                }
+                else if(j == 2 && T1.getText().equals("meduim")){
+                    NotifMeduim();
+                    j = 3;
+                }
+                else if(j == 1 && T1.getText().equals("high")){
+                    NotifHigh();  
+                    j = 2;
+                }
+                else if(j == 3 && T1.getText().equals("high")){
+                    NotifHigh();  
+                    j = 2;
+                }
+                if(i == 99){
+                    i=0;
+                    
+                }
+            }
+            
+        }catch(Exception ex){
+            ex.printStackTrace();
+             JOptionPane.showMessageDialog(null, "aaaaaa");
+            
+        }
+    }
+    
+    public void loc(){
+        ResultSet rs;
+        Statement st;
+        try{
+            conn=MyConnection.ConnectDB();
+            st = conn.createStatement();
+            String consult = "SELECT loc_name FROM location WHERE loc_id = 1";
+            rs = st.executeQuery(consult);
+            if(rs.next()){
+                loc_value.setText(rs.getString("loc_name"));
+            }
+            conn.close();
+        }
+        
+        catch(Exception e){
+        
+        }
+        
     }
     
     public void realTime(){
@@ -1630,62 +1743,73 @@ public class Home extends javax.swing.JFrame {
             graph1(); 
             graph2();
             graph3();
+            ValuesCondition1();
+            ValuesCondition2();
+            ValuesCondition3();
+            Identifier();
+            devicestatus();
+            loc();
         }
-    },2000,2000);
+    },1000,1000);
     }
     public void ValuesCondition1(){
         Statement st;
         ResultSet rs;
+        int condition = 0;
         try{
             conn=MyConnection.ConnectDB();
             st = conn.createStatement();
         String consult = "SELECT MAX(sensor1_output) FROM calculated_device_data WHERE DATE(date_created) = CURDATE()";
         rs = st.executeQuery(consult);
         
-        if(rs.next() == true){
-        Double result = rs.getDouble("MAX(sensor1_output)");
-        String res = Double.toString(result);
-        temp_output_home.setText(res+"°C");
-        temp_output_home1.setText(res+"°C");
-        sentence_degree.setText(res+"°C");
-        sentence_degree1.setText(res+"°C");
-        sentence_degree2.setText(res+"°C");
+        if(rs.next()){
+            Double result = rs.getDouble("MAX(sensor1_output)");
+            String res = Double.toString(result);
+            temp_output_home.setText(res+"°C");
+            temp_output_home1.setText(res+"°C");
+            sentence_degree.setText(res+"°C");
+            sentence_degree1.setText(res+"°C");
+            sentence_degree2.setText(res+"°C");
+            
         if (result >= 36.5 && result <= 38){
-            meduim_temp.setVisible(true);
-            low_temp.setVisible(false);
-            high_temp.setVisible(false);
-            meduim_temp1.setVisible(true);
-            low_temp1.setVisible(false);
-            high_temp1.setVisible(false);
-            temp_level.setText("meduim");
+                meduim_temp.setVisible(true);
+                low_temp.setVisible(false);
+                high_temp.setVisible(false);
+                meduim_temp1.setVisible(true);
+                low_temp1.setVisible(false);
+                high_temp1.setVisible(false);
+                temp_level.setText("meduim");
+//                if(condition == 0){
+//                    JOptionPane.showMessageDialog(null, "gg");
+//                }
         }else if(result > 38){
-            high_temp.setVisible(true);
-            meduim_temp.setVisible(false);
-            low_temp.setVisible(false);
-            high_temp1.setVisible(true);
-            meduim_temp1.setVisible(false);
-            low_temp1.setVisible(false);
-            temp_level.setText("high");
+                high_temp.setVisible(true);
+                meduim_temp.setVisible(false);
+                low_temp.setVisible(false);
+                high_temp1.setVisible(true);
+                meduim_temp1.setVisible(false);
+                low_temp1.setVisible(false);
+                temp_level.setText("high");
         }else if (result < 36.5){
-            low_temp.setVisible(true);
-            meduim_temp.setVisible(false);
-            high_temp.setVisible(false);
-            low_temp1.setVisible(true);
-            meduim_temp1.setVisible(false);
-            high_temp1.setVisible(false);
-            temp_level.setText("low");
+                low_temp.setVisible(true);
+                meduim_temp.setVisible(false);
+                high_temp.setVisible(false);
+                low_temp1.setVisible(true);
+                meduim_temp1.setVisible(false);
+                high_temp1.setVisible(false);
+                temp_level.setText("low");
+//                if(condition == 0){
+//                    JOptionPane.showMessageDialog(null, "gg");
+//                    condition++;
+//                }else{
+//                
+//                }
         }
         }
+        conn.close();
         }catch(Exception e){
     
     }
-        finally{
-            try {
-                conn.close();
-            } catch (SQLException ex) {
-                
-            }
-        }
         
     }
     
@@ -1729,16 +1853,10 @@ public class Home extends javax.swing.JFrame {
             ph_level.setText("high");
         }
         }
+        conn.close();
         }catch(Exception e){
     
     }
-        finally{
-            try {
-                conn.close();
-            } catch (SQLException ex) {
-                
-            }
-        }
         
     }
 
@@ -1770,14 +1888,14 @@ public class Home extends javax.swing.JFrame {
             tds_level.setText("low");
         }else if (result >= 300.5 && result <= 600.5){
             low_tds_message.setText("GOOD");
-            low_tds.setVisible(true);
-            meduim_tds.setVisible(false);
+            low_tds.setVisible(false);
+            meduim_tds.setVisible(true);
             high_tds.setVisible(false);
             low_tds_message1.setText("GOOD");
-            low_tds1.setVisible(true);
-            meduim_tds1.setVisible(false);
+            low_tds1.setVisible(false);
+            meduim_tds1.setVisible(true);
             high_tds1.setVisible(false);
-            tds_level.setText("low");
+            tds_level.setText("meduim");
         }else if (result > 600.5 && result <= 900.5){
             meduim_tds_message.setText("FAIR");
             meduim_tds.setVisible(true);
@@ -1808,16 +1926,10 @@ public class Home extends javax.swing.JFrame {
             tds_level.setText("high");
         }
         }
+        conn.close();
         }catch(Exception e){
     
-    }finally{
-            try {
-                conn.close();
-            } catch (SQLException ex) {
-                
-            }
-        }
-        
+    }
     }
     public void Identifier(){
         String  h = "high",
@@ -1831,139 +1943,182 @@ public class Home extends javax.swing.JFrame {
                 meduimStatsES = "Fishes will be more productive and increase its growth",
                 lowStatsEE = "- Water is not on the right shape to live with any aquatic organism",
                 lowStatsHR = "- Any aquatic organism may die",
-                lowStatsES = "- This may result less productivity on fishes inside the fond";
-               
+                lowStatsES = "- This may result less productivity on fishes inside the fond",
+                lowSug = "You may want to clean your pond. Your water is acidic.",
+                highSug = "Please clean your fish pond. toxic water was read to your pond",
+                meduimSug = "Your pond is on stable state. Cleaning the pond is not neccessarily";
+               System.out.println("1");
         try{
             if (h.equals(temp_level.getText()) && h.equals(ph_level.getText()) && h.equals(tds_level.getText())){
-                high.setVisible(true);
-                meduim.setVisible(false);
-                low.setVisible(false);
+                high11.setVisible(true);
+                meduim11.setVisible(false);
+                low11.setVisible(false);
                 e_effects.setText(highStatsEE);
                 h_risks.setText(highStatsHR);
                 e_status.setText(highStatsES);
+                reports_findings.setText(highStatsEE+"."+highStatsHR+"."+highStatsES+".");
+                reports_suggestion.setText(highSug);
+                T1.setText("high");
 //                NotifHigh();
             }else if (m.equals(temp_level.getText()) && m.equals(ph_level.getText()) && m.equals(tds_level.getText())){
-                low.setVisible(false);
-                meduim.setVisible(true);
-                high.setVisible(false);
+                low11.setVisible(false);
+                meduim11.setVisible(true);
+                high11.setVisible(false);
                 e_effects.setText(meduimStatsEE);
                 h_risks.setText(meduimStatsHR);
                 e_status.setText(meduimStatsES);
+                reports_findings.setText(meduimStatsEE+"."+meduimStatsHR+"."+meduimStatsES+".");
+                reports_suggestion.setText(meduimSug);
+                T1.setText("meduim");
 //                NotifMeduim();
             }else if (l.equals(temp_level.getText()) && l.equals(ph_level.getText()) && l.equals(tds_level.getText())){
-                low.setVisible(true);
-                meduim.setVisible(false);
-                high.setVisible(false);
+                low11.setVisible(true);
+                meduim11.setVisible(false);
+                high11.setVisible(false);
                 e_effects.setText(lowStatsEE);
                 h_risks.setText(lowStatsHR);
                 e_status.setText(lowStatsES);
+                reports_findings.setText(lowStatsEE+""+lowStatsHR+"."+lowStatsES+".");
+                reports_suggestion.setText(lowSug);
+                T1.setText("low");
 //                NotifLow();
             }else if (h.equals(temp_level.getText()) && m.equals(ph_level.getText()) && m.equals(tds_level.getText())){
-                low.setVisible(false);
-                meduim.setVisible(false);
-                high.setVisible(true);
+                low11.setVisible(false);
+                meduim11.setVisible(false);
+                high11.setVisible(true);
                 e_effects.setText(highStatsEE);
                 h_risks.setText(highStatsHR);
                 e_status.setText(highStatsES);
+                reports_findings.setText(highStatsEE+"."+highStatsHR+"."+highStatsES+".");
+                reports_suggestion.setText(highSug);
+                T1.setText("high");
 //                NotifHigh();
             }else if (l.equals(temp_level.getText()) && m.equals(ph_level.getText()) && m.equals(tds_level.getText())){
-                low.setVisible(false);
-                meduim.setVisible(true);
-                high.setVisible(false);
+                low11.setVisible(false);
+                meduim11.setVisible(true);
+                high11.setVisible(false);
                 e_effects.setText(meduimStatsEE);
                 h_risks.setText(meduimStatsHR);
                 e_status.setText(meduimStatsES);
+                reports_findings.setText(meduimStatsEE+"."+meduimStatsHR+"."+meduimStatsES+".");
+                reports_suggestion.setText(meduimSug);
+                T1.setText("meduim");
 //                NotifMeduim();
             }else if (m.equals(temp_level.getText()) && h.equals(ph_level.getText()) && m.equals(tds_level.getText())){
-                low.setVisible(false);
-                meduim.setVisible(false);
-                high.setVisible(true);
+                low11.setVisible(false);
+                meduim11.setVisible(false);
+                high11.setVisible(true);
                 e_effects.setText(highStatsEE);
                 h_risks.setText(highStatsHR);
                 e_status.setText(highStatsES);
+                reports_findings.setText(highStatsEE+"."+highStatsHR+"."+highStatsES+".");
+                reports_suggestion.setText(highSug);
+                T1.setText("high");
 //                NotifHigh();
             }else if (m.equals(temp_level.getText()) && l.equals(ph_level.getText()) && m.equals(tds_level.getText())){
-                low.setVisible(false);
-                meduim.setVisible(true);
-                high.setVisible(false);
+                low11.setVisible(false);
+                meduim11.setVisible(true);
+                high11.setVisible(false);
                 e_effects.setText(meduimStatsEE);
                 h_risks.setText(meduimStatsHR);
                 e_status.setText(meduimStatsES);
+                reports_findings.setText(meduimStatsEE+"."+meduimStatsHR+"."+meduimStatsES+".");
+                reports_suggestion.setText(meduimSug);
+                T1.setText("meduim");
 //                NotifMeduim();
             }else if (m.equals(temp_level.getText()) && m.equals(ph_level.getText()) && h.equals(tds_level.getText())){
-                low.setVisible(false);
-                meduim.setVisible(false);
-                high.setVisible(true);
+                low11.setVisible(false);
+                meduim11.setVisible(false);
+                high11.setVisible(true);
                 e_effects.setText(highStatsEE);
                 h_risks.setText(highStatsHR);
                 e_status.setText(highStatsES);
+                reports_findings.setText(highStatsEE+"."+highStatsHR+"."+highStatsES+".");
+                reports_suggestion.setText(highSug);
+                T1.setText("high");
 //                NotifHigh();
             }else if (m.equals(temp_level.getText()) && m.equals(ph_level.getText()) && l.equals(tds_level.getText())){
-                low.setVisible(false);
-                meduim.setVisible(true);
-                high.setVisible(false);
+                low11.setVisible(false);
+                meduim11.setVisible(true);
+                high11.setVisible(false);
                 e_effects.setText(meduimStatsEE);
                 h_risks.setText(meduimStatsHR);
                 e_status.setText(meduimStatsES);
+                reports_findings.setText(meduimStatsEE+"."+meduimStatsHR+"."+meduimStatsES+".");
+                reports_suggestion.setText(meduimSug);
+                T1.setText("meduim");
 //                NotifMeduim();
             }else if (h.equals(temp_level.getText()) && l.equals(ph_level.getText()) && l.equals(tds_level.getText())){
-                low.setVisible(false);
-                meduim.setVisible(false);
-                high.setVisible(true);
+                low11.setVisible(false);
+                meduim11.setVisible(false);
+                high11.setVisible(true);
                 e_effects.setText(highStatsEE);
                 h_risks.setText(highStatsHR);
                 e_status.setText(highStatsES);
+                reports_findings.setText(highStatsEE+"."+highStatsHR+"."+highStatsES+".");
+                reports_suggestion.setText(highSug);
+                T1.setText("high");
 //                NotifHigh();
             }else if (m.equals(temp_level.getText()) && l.equals(ph_level.getText()) && l.equals(tds_level.getText())){
-                low.setVisible(false);
-                meduim.setVisible(true);
-                high.setVisible(false);
+                low11.setVisible(false);
+                meduim11.setVisible(true);
+                high11.setVisible(false);
                 e_effects.setText(meduimStatsEE);
                 h_risks.setText(meduimStatsHR);
                 e_status.setText(meduimStatsES);
+                reports_findings.setText(meduimStatsEE+"."+meduimStatsHR+"."+meduimStatsES+".");
+                reports_suggestion.setText(meduimSug);
+                T1.setText("meduim");
 //                NotifMeduim();
             }else if (l.equals(temp_level.getText()) && h.equals(ph_level.getText()) && l.equals(tds_level.getText())){
-                low.setVisible(false);
-                meduim.setVisible(false);
-                high.setVisible(true);
+                low11.setVisible(false);
+                meduim11.setVisible(false);
+                high11.setVisible(true);
                 e_effects.setText(highStatsEE);
                 h_risks.setText(highStatsHR);
                 e_status.setText(highStatsES);
+                reports_findings.setText(highStatsEE+"."+highStatsHR+"."+highStatsES+".");
+                reports_suggestion.setText(highSug);
+                T1.setText("high");
 //                NotifHigh();
             }else if (l.equals(temp_level.getText()) && m.equals(ph_level.getText()) && l.equals(tds_level.getText())){
-                low.setVisible(false);
-                meduim.setVisible(true);
-                high.setVisible(false);
+                low11.setVisible(false);
+                meduim11.setVisible(true);
+                high11.setVisible(false);
                 e_effects.setText(meduimStatsEE);
                 h_risks.setText(meduimStatsHR);
                 e_status.setText(meduimStatsES);
+                reports_findings.setText(meduimStatsEE+"."+meduimStatsHR+"."+meduimStatsES+".");
+                reports_suggestion.setText(meduimSug);
+                T1.setText("meduim");
 //                NotifMeduim();
             }else if (l.equals(temp_level.getText()) && l.equals(ph_level.getText()) && h.equals(tds_level.getText())){
-                low.setVisible(false);
-                meduim.setVisible(false);
-                high.setVisible(true);
+                low11.setVisible(false);
+                meduim11.setVisible(false);
+                high11.setVisible(true);
                 e_effects.setText(highStatsEE);
                 h_risks.setText(highStatsHR);
                 e_status.setText(highStatsES);
+                reports_findings.setText(highStatsEE+"."+highStatsHR+"."+highStatsES+".");
+                reports_suggestion.setText(highSug);
+                T1.setText("high");
 //                NotifHigh();
             }else if (l.equals(temp_level.getText()) && l.equals(ph_level.getText()) && m.equals(tds_level.getText())){
-                low.setVisible(false);
-                meduim.setVisible(true);
-                high.setVisible(false);
+                low11.setVisible(false);
+                meduim11.setVisible(true);
+                high11.setVisible(false);
                 e_effects.setText(meduimStatsEE);
                 h_risks.setText(meduimStatsHR);
                 e_status.setText(meduimStatsES);
+                reports_findings.setText(meduimStatsEE+"."+meduimStatsHR+"."+meduimStatsES+".");
+                reports_suggestion.setText(meduimSug);
+                T1.setText("meduim");
 //                NotifMeduim();
             }
         }catch(Exception e){
             e.printStackTrace();
-        }finally{
-            try {
-                conn.close();
-            } catch (SQLException ex) {
-                
-            }
         }
+        gggg = 1;
     }
     public void graph1(){
     try{
@@ -2037,7 +2192,6 @@ public class Home extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, e);
     }
     }
-    
     private void chart_panelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chart_panelMouseClicked
 
     }//GEN-LAST:event_chart_panelMouseClicked
@@ -2161,6 +2315,34 @@ public class Home extends javax.swing.JFrame {
     set.setVisible(true);
     }//GEN-LAST:event_jPanel20MouseClicked
 
+    private void high11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_high11MouseClicked
+        try {
+            NotifHigh();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_high11MouseClicked
+
+    private void meduim11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_meduim11MouseClicked
+        try {
+            NotifMeduim();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_meduim11MouseClicked
+
+    private void low11KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_low11KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_low11KeyPressed
+
+    private void low11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_low11MouseClicked
+    try {
+            NotifLow();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_low11MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -2201,19 +2383,22 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel Home;
     private javax.swing.JPanel Reports;
     private javax.swing.JPanel Settings;
+    private javax.swing.JLabel T1;
+    private javax.swing.JLabel activedev;
     private javax.swing.JPanel chart_panel;
     private javax.swing.JPanel chart_panel_2;
     private javax.swing.JPanel chart_panel_3;
     private javax.swing.JTextArea e_effects;
     private javax.swing.JTextArea e_status;
     private javax.swing.JTextArea h_risks;
-    private javax.swing.JLabel high;
+    private javax.swing.JLabel high11;
     private javax.swing.JPanel high_ph;
     private javax.swing.JPanel high_ph1;
     private javax.swing.JPanel high_tds;
     private javax.swing.JPanel high_tds1;
     private javax.swing.JPanel high_temp;
     private javax.swing.JPanel high_temp1;
+    private javax.swing.JLabel inactivedev;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel100;
@@ -2237,6 +2422,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel117;
     private javax.swing.JLabel jLabel118;
     private javax.swing.JLabel jLabel119;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel120;
     private javax.swing.JLabel jLabel121;
     private javax.swing.JLabel jLabel122;
@@ -2260,6 +2446,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
@@ -2292,7 +2479,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel60;
-    private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel62;
     private javax.swing.JLabel jLabel63;
     private javax.swing.JLabel jLabel64;
@@ -2346,8 +2532,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel34;
     private javax.swing.JPanel jPanel35;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel42;
-    private javax.swing.JPanel jPanel43;
     private javax.swing.JPanel jPanel44;
     private javax.swing.JPanel jPanel45;
     private javax.swing.JPanel jPanel46;
@@ -2362,9 +2546,11 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JPanel jpanel222;
-    private javax.swing.JLabel loc_value2;
-    private javax.swing.JLabel low;
+    private javax.swing.JLabel loc_value;
+    private javax.swing.JLabel low11;
     private javax.swing.JPanel low_ph;
     private javax.swing.JPanel low_ph1;
     private javax.swing.JPanel low_tds;
@@ -2373,7 +2559,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel low_tds_message1;
     private javax.swing.JPanel low_temp;
     private javax.swing.JPanel low_temp1;
-    private javax.swing.JLabel meduim;
+    private javax.swing.JLabel meduim11;
     private javax.swing.JPanel meduim_ph;
     private javax.swing.JPanel meduim_ph1;
     private javax.swing.JPanel meduim_tds;
@@ -2387,6 +2573,8 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel ph_level;
     private javax.swing.JLabel ph_output_home;
     private javax.swing.JLabel ph_output_home1;
+    private javax.swing.JTextArea reports_findings;
+    private javax.swing.JTextArea reports_suggestion;
     private javax.swing.JLabel sentence_degree;
     private javax.swing.JLabel sentence_degree1;
     private javax.swing.JLabel sentence_degree2;

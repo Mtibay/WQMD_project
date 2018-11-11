@@ -170,7 +170,7 @@ public class Security_pass extends javax.swing.JFrame {
     public void passs(){
       String pass = passcode.getText();
       try  {
-          String sql="SELECT * FROM `login` WHERE passcode = ?" ;
+          String sql="SELECT * FROM login WHERE passcode = ?" ;
           pst=conn.prepareStatement(sql);
                 pst.setString(1, passcode.getText());
                 rs=pst.executeQuery();

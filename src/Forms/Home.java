@@ -74,7 +74,7 @@ public class Home extends javax.swing.JFrame {
         Graphs.setVisible(false);
         Reports.setVisible(false);
         Home.setVisible(true);
-        chart_panel.setVisible(true);
+        chart_panel_4.setVisible(true);
         chart_panel_2.setVisible(false);
         chart_panel_3.setVisible(false);
         meduim11.setVisible(false);
@@ -94,7 +94,6 @@ public class Home extends javax.swing.JFrame {
         high_tds.setVisible(false);
         inactivedev.setVisible(false);
         T1.setVisible(false);
-        graph1();
         realTime();
         Identifier();
         new java.util.Timer().schedule( 
@@ -104,7 +103,7 @@ public class Home extends javax.swing.JFrame {
                 notifCon();
             }
         }, 
-        5000 
+        2000 
 );
         
         
@@ -154,8 +153,9 @@ public class Home extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         chart_panel_2 = new javax.swing.JPanel();
-        chart_panel = new javax.swing.JPanel();
         chart_panel_3 = new javax.swing.JPanel();
+        chart_panel = new javax.swing.JPanel();
+        chart_panel_4 = new javax.swing.JPanel();
         Home = new javax.swing.JPanel();
         jPanel22 = new javax.swing.JPanel();
         jLabel32 = new javax.swing.JLabel();
@@ -325,6 +325,7 @@ public class Home extends javax.swing.JFrame {
         reports_suggestion = new javax.swing.JTextArea();
         jScrollPane7 = new javax.swing.JScrollPane();
         reports_findings = new javax.swing.JTextArea();
+        jLabel86 = new javax.swing.JLabel();
         Settings = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -544,7 +545,7 @@ public class Home extends javax.swing.JFrame {
 
         jLabel10.setFont(new java.awt.Font("Microsoft Himalaya", 0, 36)); // NOI18N
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon_green.png"))); // NOI18N
-        jLabel10.setText("Total Disolved Oxygen");
+        jLabel10.setText("Total Disolved Solid");
         jPanel5.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, 30));
 
         jLabel15.setFont(new java.awt.Font("Microsoft Himalaya", 0, 36)); // NOI18N
@@ -653,16 +654,6 @@ public class Home extends javax.swing.JFrame {
             }
         });
         chart_panel_2.setLayout(new java.awt.BorderLayout());
-
-        chart_panel.setBackground(new java.awt.Color(0, 0, 102));
-        chart_panel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                chart_panelMouseClicked(evt);
-            }
-        });
-        chart_panel.setLayout(new java.awt.BorderLayout());
-        chart_panel_2.add(chart_panel, java.awt.BorderLayout.PAGE_START);
-
         jPanel7.add(chart_panel_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 910, 390));
 
         chart_panel_3.setBackground(new java.awt.Color(0, 0, 102));
@@ -673,6 +664,24 @@ public class Home extends javax.swing.JFrame {
         });
         chart_panel_3.setLayout(new java.awt.BorderLayout());
         jPanel7.add(chart_panel_3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 910, 390));
+
+        chart_panel.setBackground(new java.awt.Color(0, 0, 102));
+        chart_panel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                chart_panelMouseClicked(evt);
+            }
+        });
+        chart_panel.setLayout(new java.awt.BorderLayout());
+        jPanel7.add(chart_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        chart_panel_4.setBackground(new java.awt.Color(0, 0, 102));
+        chart_panel_4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                chart_panel_4MouseClicked(evt);
+            }
+        });
+        chart_panel_4.setLayout(new java.awt.BorderLayout());
+        jPanel7.add(chart_panel_4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 910, 390));
 
         jPanel6.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 930, 410));
 
@@ -789,7 +798,7 @@ public class Home extends javax.swing.JFrame {
 
         jLabel42.setFont(new java.awt.Font("Microsoft Himalaya", 0, 24)); // NOI18N
         jLabel42.setText("Reading");
-        jPanel25.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, -1, -1));
+        jPanel25.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, -1, -1));
 
         jLabel43.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ph.png"))); // NOI18N
         jPanel25.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
@@ -840,12 +849,12 @@ public class Home extends javax.swing.JFrame {
 
         jPanel25.add(ph_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 160, 40));
 
-        jLabel49.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/oxygen.png"))); // NOI18N
-        jPanel25.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, -1, -1));
+        jLabel49.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tds.png"))); // NOI18N
+        jPanel25.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, -1, -1));
 
         jLabel53.setFont(new java.awt.Font("Microsoft Himalaya", 0, 24)); // NOI18N
         jLabel53.setText("TDS");
-        jPanel25.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, -1, -1));
+        jPanel25.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, -1, -1));
 
         tds_label.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         tds_label.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1206,7 +1215,7 @@ public class Home extends javax.swing.JFrame {
 
         jLabel82.setFont(new java.awt.Font("Microsoft Himalaya", 0, 24)); // NOI18N
         jLabel82.setText("Reading");
-        jPanel35.add(jLabel82, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, -1, -1));
+        jPanel35.add(jLabel82, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, -1, -1));
 
         jLabel83.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ph.png"))); // NOI18N
         jPanel35.add(jLabel83, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
@@ -1216,11 +1225,11 @@ public class Home extends javax.swing.JFrame {
         jPanel35.add(jLabel84, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
 
         jLabel85.setFont(new java.awt.Font("Microsoft Himalaya", 0, 24)); // NOI18N
-        jLabel85.setText("pH");
-        jPanel35.add(jLabel85, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, -1, -1));
+        jLabel85.setText("TDS");
+        jPanel35.add(jLabel85, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, -1, -1));
 
-        jLabel89.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/oxygen.png"))); // NOI18N
-        jPanel35.add(jLabel89, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, -1, -1));
+        jLabel89.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tds.png"))); // NOI18N
+        jPanel35.add(jLabel89, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, -1, -1));
 
         jLabel92.setFont(new java.awt.Font("Microsoft Himalaya", 0, 24)); // NOI18N
         jLabel92.setText("Reading");
@@ -1504,6 +1513,10 @@ public class Home extends javax.swing.JFrame {
 
         jPanel35.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, 440, 160));
 
+        jLabel86.setFont(new java.awt.Font("Microsoft Himalaya", 0, 24)); // NOI18N
+        jLabel86.setText("pH");
+        jPanel35.add(jLabel86, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, -1, -1));
+
         jPanel33.add(jPanel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 930, 410));
 
         Reports.add(jPanel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 940, 420));
@@ -1654,15 +1667,9 @@ public class Home extends javax.swing.JFrame {
     }
     
     public void notifCon(){
-        
-        String sql = "SELECT COUNT(cdd_id) FROM calculated_device_data WHERE DATE(date_created) = CURDATE()";
         int i, j = 0;
         String l = "low";
         try{
-            
-            conn=MyConnection.ConnectDB();
-            st = conn.createStatement();
-            rs = st.executeQuery(sql);
             for(i = 0; i < 10000000; i++){
                 System.out.println(j);
                 System.out.println(i);
@@ -1876,7 +1883,7 @@ public class Home extends javax.swing.JFrame {
         tds_output_home.setText(res+"ppm");
         tds_output_home1.setText(res+"ppm");
         time_value.setText(result2);
-        if(result <= 300){
+        if(result <= 300.5){
             low_tds_message.setText("EXCELLENT");
             low_tds.setVisible(true);
             meduim_tds.setVisible(false);
@@ -1896,7 +1903,7 @@ public class Home extends javax.swing.JFrame {
             meduim_tds1.setVisible(true);
             high_tds1.setVisible(false);
             tds_level.setText("meduim");
-        }else if (result > 600.5 && result <= 900.5){
+        }else if (result >= 600.5 && result <= 900.5){
             meduim_tds_message.setText("FAIR");
             meduim_tds.setVisible(true);
             low_tds.setVisible(false);
@@ -2081,6 +2088,17 @@ public class Home extends javax.swing.JFrame {
                 reports_suggestion.setText(highSug);
                 T1.setText("high");
 //                NotifHigh();
+            }else if (l.equals(temp_level.getText()) && h.equals(ph_level.getText()) && m.equals(tds_level.getText())){
+                low11.setVisible(false);
+                meduim11.setVisible(false);
+                high11.setVisible(true);
+                e_effects.setText(highStatsEE);
+                h_risks.setText(highStatsHR);
+                e_status.setText(highStatsES);
+                reports_findings.setText(highStatsEE+"."+highStatsHR+"."+highStatsES+".");
+                reports_suggestion.setText(highSug);
+                T1.setText("high");
+//                NotifHigh();
             }else if (l.equals(temp_level.getText()) && m.equals(ph_level.getText()) && l.equals(tds_level.getText())){
                 low11.setVisible(false);
                 meduim11.setVisible(true);
@@ -2130,9 +2148,9 @@ public class Home extends javax.swing.JFrame {
         CategoryPlot catplot = chart.getCategoryPlot();
         catplot.setRangeGridlinePaint(Color.BLACK);
         ChartPanel chartpanel = new ChartPanel(chart);
-        chart_panel.removeAll();
-        chart_panel.add(chartpanel, BorderLayout.CENTER);
-        chart_panel.validate(); 
+        chart_panel_4.removeAll();
+        chart_panel_4.add(chartpanel, BorderLayout.CENTER);
+        chart_panel_4.validate(); 
         conn.close();
       }
     catch(Exception e){
@@ -2192,10 +2210,6 @@ public class Home extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, e);
     }
     }
-    private void chart_panelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chart_panelMouseClicked
-
-    }//GEN-LAST:event_chart_panelMouseClicked
-
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
     Graphs.setVisible(true);
     Home.setVisible(false);
@@ -2252,37 +2266,37 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jpanel222MouseClicked
 
     private void jLabel16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseClicked
-    chart_panel.setVisible(false);
+    chart_panel_4.setVisible(false);
     chart_panel_2.setVisible(true);
     chart_panel_3.setVisible(false);
     }//GEN-LAST:event_jLabel16MouseClicked
 
     private void jPanel19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel19MouseClicked
-    chart_panel.setVisible(false);
+    chart_panel_4.setVisible(false);
     chart_panel_2.setVisible(true);
     chart_panel_3.setVisible(false);
     }//GEN-LAST:event_jPanel19MouseClicked
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
-    chart_panel.setVisible(false);
+    chart_panel_4.setVisible(false);
     chart_panel_2.setVisible(false);
     chart_panel_3.setVisible(true);
     }//GEN-LAST:event_jLabel7MouseClicked
 
     private void jPanel18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel18MouseClicked
-    chart_panel.setVisible(false);
+    chart_panel_4.setVisible(false);
     chart_panel_2.setVisible(false);
     chart_panel_3.setVisible(true);
     }//GEN-LAST:event_jPanel18MouseClicked
 
     private void jLabel18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel18MouseClicked
-    chart_panel.setVisible(true);
+    chart_panel_4.setVisible(true);
     chart_panel_2.setVisible(false);
     chart_panel_3.setVisible(false);
     }//GEN-LAST:event_jLabel18MouseClicked
 
     private void jPanel44MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel44MouseClicked
-    chart_panel.setVisible(true);
+    chart_panel_4.setVisible(true);
     chart_panel_2.setVisible(false);
     chart_panel_3.setVisible(false);
     }//GEN-LAST:event_jPanel44MouseClicked
@@ -2343,6 +2357,14 @@ public class Home extends javax.swing.JFrame {
         }        // TODO add your handling code here:
     }//GEN-LAST:event_low11MouseClicked
 
+    private void chart_panel_4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chart_panel_4MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chart_panel_4MouseClicked
+
+    private void chart_panelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chart_panelMouseClicked
+
+    }//GEN-LAST:event_chart_panelMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -2388,6 +2410,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel chart_panel;
     private javax.swing.JPanel chart_panel_2;
     private javax.swing.JPanel chart_panel_3;
+    private javax.swing.JPanel chart_panel_4;
     private javax.swing.JTextArea e_effects;
     private javax.swing.JTextArea e_status;
     private javax.swing.JTextArea h_risks;
@@ -2501,6 +2524,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel83;
     private javax.swing.JLabel jLabel84;
     private javax.swing.JLabel jLabel85;
+    private javax.swing.JLabel jLabel86;
     private javax.swing.JLabel jLabel89;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabel92;

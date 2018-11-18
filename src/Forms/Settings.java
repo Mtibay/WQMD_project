@@ -26,6 +26,7 @@ public class Settings extends javax.swing.JFrame {
         changelocationpanel.setVisible(false);
         conn=MyConnection.ConnectDB();
         getLoc();
+        verifyloc();
     }
     
     public void UpdateLogin(){
@@ -89,15 +90,77 @@ public class Settings extends javax.swing.JFrame {
             java.sql.Statement st = conn.createStatement();
             conn=MyConnection.ConnectDB();
             st = conn.createStatement();
-            String sql = "Update location SET loc_name = '"+locname+"' Where loc_id = 1";
-            if(txtLocation.getText().length() > 1){
-                pst = conn.prepareStatement(sql);
-                pst.execute();
-                JOptionPane.showMessageDialog(null, "Location Updated!");
-                dispose();
+            String sql1 = "SELECT loc_id FROM location WHERE loc_id = 1";
+            rs = st.executeQuery(sql1);
+            if(rs != null && rs.next()){
+                btninsert.setVisible(false);
+                String sql = "Update location SET loc_name = '"+locname+"' Where loc_id = 1";
+                if(txtLocation.getText().length() > 1){
+                    pst = conn.prepareStatement(sql);
+                    pst.execute();
+                    JOptionPane.showMessageDialog(null, "Location Updated!");
+                    dispose();
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Please specify the location text","", JOptionPane.WARNING_MESSAGE);
+                }
             }
-            else{
-                JOptionPane.showMessageDialog(null, "Please specify the location text","", JOptionPane.WARNING_MESSAGE);
+            else
+            {
+                JOptionPane.showMessageDialog(null, "No default location yet, please insert default location first","",JOptionPane.WARNING_MESSAGE);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    public void InsertLoc(){
+        String locname = txtLocation.getText();
+        try {
+            java.sql.Statement st = conn.createStatement();
+            conn=MyConnection.ConnectDB();
+            st = conn.createStatement();
+            String sql1 = "SELECT loc_id FROM location WHERE loc_id = 1";
+            rs = st.executeQuery(sql1);
+            if(rs != null && rs.next()){
+             JOptionPane.showMessageDialog(null, "No default location yet, please insert default location first","",JOptionPane.WARNING_MESSAGE);   
+            }
+            else
+            {
+                String sql = "INSERT INTO location (loc_id, loc_name) VALUES(?,?)";
+                if(txtLocation.getText().length() > 1){
+                    pst = conn.prepareStatement(sql);
+                    pst.setString(1, "1");
+                    pst.setString(2, txtLocation.getText());
+                    pst.execute();
+                    JOptionPane.showMessageDialog(null, "Location added!");
+                    dispose();
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Please specify the location text","", JOptionPane.WARNING_MESSAGE);
+                }
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    public void verifyloc(){
+        String locname = txtLocation.getText();
+        try {
+            java.sql.Statement st = conn.createStatement();
+            conn=MyConnection.ConnectDB();
+            st = conn.createStatement();
+            String sql1 = "SELECT loc_id FROM location WHERE loc_id = 1";
+            rs = st.executeQuery(sql1);
+            if(rs != null && rs.next()){
+                btninsert.setVisible(false);
+                btnupdate.setVisible(true);
+            }
+            else
+            {
+                btninsert.setVisible(true);
+                btnupdate.setVisible(false);
             }
         }catch(Exception e){
             e.printStackTrace();
@@ -124,10 +187,11 @@ public class Settings extends javax.swing.JFrame {
         txtNewpass = new javax.swing.JPasswordField();
         txtOldpass = new javax.swing.JPasswordField();
         changelocationpanel = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
+        btninsert = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         txtLocation = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        btnupdate = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -214,15 +278,20 @@ public class Settings extends javax.swing.JFrame {
         changelocationpanel.setBackground(new java.awt.Color(0, 0, 102));
         changelocationpanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton3.setText("Update Location Value");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btninsert.setText("Insert Location ");
+        btninsert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btninsertActionPerformed(evt);
             }
         });
-        changelocationpanel.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 160, -1));
+        changelocationpanel.add(btninsert, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 150, -1));
 
         jButton4.setText("Cancel");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         changelocationpanel.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 130, -1, -1));
 
         txtLocation.addActionListener(new java.awt.event.ActionListener() {
@@ -230,12 +299,20 @@ public class Settings extends javax.swing.JFrame {
                 txtLocationActionPerformed(evt);
             }
         });
-        changelocationpanel.add(txtLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 290, -1));
+        changelocationpanel.add(txtLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 290, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Current Location");
-        changelocationpanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, -1, -1));
+        changelocationpanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, -1, -1));
+
+        btnupdate.setText("Update Location Value");
+        btnupdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnupdateActionPerformed(evt);
+            }
+        });
+        changelocationpanel.add(btnupdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 150, -1));
 
         getContentPane().add(changelocationpanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 310, 200));
 
@@ -273,9 +350,9 @@ public class Settings extends javax.swing.JFrame {
         UpdateLogin();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-    UpdateLoc();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void btninsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btninsertActionPerformed
+    InsertLoc();
+    }//GEN-LAST:event_btninsertActionPerformed
 
     private void txtLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLocationActionPerformed
         // TODO add your handling code here:
@@ -288,6 +365,14 @@ public class Settings extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
             dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void btnupdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnupdateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnupdateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -325,13 +410,14 @@ public class Settings extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btninsert;
+    private javax.swing.JButton btnupdate;
     private javax.swing.JLabel changeloc;
     private javax.swing.JPanel changelocationpanel;
     private javax.swing.JLabel changepass;
     private javax.swing.JPanel changepasspanel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

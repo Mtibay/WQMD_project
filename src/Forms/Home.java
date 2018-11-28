@@ -1786,9 +1786,6 @@ public class Home extends javax.swing.JFrame {
                 low_temp1.setVisible(false);
                 high_temp1.setVisible(false);
                 temp_level.setText("meduim");
-//                if(condition == 0){
-//                    JOptionPane.showMessageDialog(null, "gg");
-//                }
         }else if(result > 31){
                 high_temp.setVisible(true);
                 meduim_temp.setVisible(false);
@@ -1805,12 +1802,6 @@ public class Home extends javax.swing.JFrame {
                 meduim_temp1.setVisible(false);
                 high_temp1.setVisible(false);
                 temp_level.setText("low");
-//                if(condition == 0){
-//                    JOptionPane.showMessageDialog(null, "gg");
-//                    condition++;
-//                }else{
-//                
-//                }
         }
         }
         conn.close();
@@ -1883,7 +1874,7 @@ public class Home extends javax.swing.JFrame {
         tds_output_home.setText(res+"ppm");
         tds_output_home1.setText(res+"ppm");
         time_value.setText(result2);
-        if(result <= 300.5){
+        if(result <= 400){
             low_tds_message.setText("EXCELLENT");
             low_tds.setVisible(true);
             meduim_tds.setVisible(false);
@@ -1893,7 +1884,7 @@ public class Home extends javax.swing.JFrame {
             meduim_tds1.setVisible(false);
             high_tds1.setVisible(false);
             tds_level.setText("low");
-        }else if (result >= 300.5 && result <= 600.5){
+        }else if (result > 400 && result <= 600){
             low_tds_message.setText("GOOD");
             low_tds.setVisible(false);
             meduim_tds.setVisible(true);
@@ -1903,7 +1894,7 @@ public class Home extends javax.swing.JFrame {
             meduim_tds1.setVisible(true);
             high_tds1.setVisible(false);
             tds_level.setText("meduim");
-        }else if (result >= 600.5 && result <= 900.5){
+        }else if (result > 600 && result <= 900){
             meduim_tds_message.setText("FAIR");
             meduim_tds.setVisible(true);
             low_tds.setVisible(false);
@@ -1913,7 +1904,7 @@ public class Home extends javax.swing.JFrame {
             low_tds1.setVisible(false);
             high_tds1.setVisible(false);
             tds_level.setText("meduim");
-        }else if (result > 900.5 && result <= 1200.5){
+        }else if (result > 900 && result <= 1200){
             meduim_tds_message.setText("POOR");
             meduim_tds.setVisible(true);
             low_tds.setVisible(false);
@@ -1948,7 +1939,7 @@ public class Home extends javax.swing.JFrame {
                 meduimStatsEE = "- The fond contains safe water",
                 meduimStatsHR = "- Heart risks lessen aquatic organis are safe on this type of reading",
                 meduimStatsES = "Fishes will be more productive and increase its growth",
-                lowStatsEE = "- Water is not on the right shape to live with any aquatic organism",
+                lowStatsEE = "- Water is not on the right condition to live with any aquatic organism",
                 lowStatsHR = "- Any aquatic organism may die",
                 lowStatsES = "- This may result less productivity on fishes inside the fond",
                 lowSug = "You may want to clean your pond. Your water is acidic.",

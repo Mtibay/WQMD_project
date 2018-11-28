@@ -271,6 +271,12 @@ public class Settings extends javax.swing.JFrame {
             }
         });
         changepasspanel.add(txtNewpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 140, -1));
+
+        txtOldpass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtOldpassActionPerformed(evt);
+            }
+        });
         changepasspanel.add(txtOldpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, 140, -1));
 
         getContentPane().add(changepasspanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, 30, 340, 200));
@@ -371,8 +377,12 @@ public class Settings extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void btnupdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnupdateActionPerformed
-        // TODO add your handling code here:
+    UpdateLoc();
     }//GEN-LAST:event_btnupdateActionPerformed
+
+    private void txtOldpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOldpassActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtOldpassActionPerformed
 
     /**
      * @param args the command line arguments

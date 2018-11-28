@@ -1778,7 +1778,7 @@ public class Home extends javax.swing.JFrame {
             sentence_degree1.setText(res+"°C");
             sentence_degree2.setText(res+"°C");
             
-        if (result >= 36.5 && result <= 38){
+        if (result >= 25 && result <= 31){
                 meduim_temp.setVisible(true);
                 low_temp.setVisible(false);
                 high_temp.setVisible(false);
@@ -1789,7 +1789,7 @@ public class Home extends javax.swing.JFrame {
 //                if(condition == 0){
 //                    JOptionPane.showMessageDialog(null, "gg");
 //                }
-        }else if(result > 38){
+        }else if(result > 31){
                 high_temp.setVisible(true);
                 meduim_temp.setVisible(false);
                 low_temp.setVisible(false);
@@ -1797,7 +1797,7 @@ public class Home extends javax.swing.JFrame {
                 meduim_temp1.setVisible(false);
                 low_temp1.setVisible(false);
                 temp_level.setText("high");
-        }else if (result < 36.5){
+        }else if (result < 25){
                 low_temp.setVisible(true);
                 meduim_temp.setVisible(false);
                 high_temp.setVisible(false);
@@ -1834,7 +1834,7 @@ public class Home extends javax.swing.JFrame {
         String res = Double.toString(result);
         ph_output_home.setText(res+"ph");
         ph_output_home1.setText(res+"ph");
-        if(result >= 0 && result <= 6.4){
+        if(result >= 0 && result < 6){
             low_ph.setVisible(true);
             meduim_ph.setVisible(false);
             high_ph.setVisible(false);
@@ -1842,7 +1842,7 @@ public class Home extends javax.swing.JFrame {
             meduim_ph1.setVisible(false);
             high_ph1.setVisible(false);
             ph_level.setText("low");
-        }else if (result >= 6.5 && result <= 8.5){
+        }else if (result >= 6 && result <= 9.5){
             low_ph.setVisible(false);
             meduim_ph.setVisible(true);
             high_ph.setVisible(false);
@@ -1850,7 +1850,7 @@ public class Home extends javax.swing.JFrame {
             meduim_ph1.setVisible(true);
             high_ph1.setVisible(false);
             ph_level.setText("meduim");
-        }else if (result > 8.5){
+        }else if (result > 9.5){
             high_ph.setVisible(true);
             meduim_ph.setVisible(false);
             low_ph.setVisible(false);

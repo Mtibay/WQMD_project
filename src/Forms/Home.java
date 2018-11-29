@@ -173,12 +173,12 @@ public class Home extends javax.swing.JFrame {
         jLabel35 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
         high_temp = new javax.swing.JPanel();
-        jLabel37 = new javax.swing.JLabel();
-        jLabel38 = new javax.swing.JLabel();
+        tempmessage1 = new javax.swing.JLabel();
+        tempmessage2 = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
-        sentence_degree = new javax.swing.JLabel();
         temp_label = new javax.swing.JPanel();
         temp_output_home = new javax.swing.JLabel();
+        sentence_degree = new javax.swing.JLabel();
         jLabel42 = new javax.swing.JLabel();
         jLabel43 = new javax.swing.JLabel();
         jLabel44 = new javax.swing.JLabel();
@@ -186,9 +186,7 @@ public class Home extends javax.swing.JFrame {
         high_ph = new javax.swing.JPanel();
         jLabel46 = new javax.swing.JLabel();
         jLabel47 = new javax.swing.JLabel();
-        jPanel48 = new javax.swing.JPanel();
-        jLabel101 = new javax.swing.JLabel();
-        jLabel102 = new javax.swing.JLabel();
+        jLabel61 = new javax.swing.JLabel();
         ph_label = new javax.swing.JPanel();
         ph_output_home = new javax.swing.JLabel();
         jLabel49 = new javax.swing.JLabel();
@@ -215,7 +213,6 @@ public class Home extends javax.swing.JFrame {
         jLabel107 = new javax.swing.JLabel();
         jLabel108 = new javax.swing.JLabel();
         high_tds = new javax.swing.JPanel();
-        jLabel50 = new javax.swing.JLabel();
         jLabel51 = new javax.swing.JLabel();
         jLabel111 = new javax.swing.JLabel();
         low_tds = new javax.swing.JPanel();
@@ -761,24 +758,20 @@ public class Home extends javax.swing.JFrame {
         high_temp.setForeground(new java.awt.Color(255, 255, 255));
         high_temp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel37.setFont(new java.awt.Font("Microsoft Himalaya", 0, 20)); // NOI18N
-        jLabel37.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel37.setText("- This will affect fishes inside the fond");
-        high_temp.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, 20));
+        tempmessage1.setFont(new java.awt.Font("Microsoft Himalaya", 0, 20)); // NOI18N
+        tempmessage1.setForeground(new java.awt.Color(255, 255, 255));
+        tempmessage1.setText("-It can have detrimental effect of oxygen level");
+        high_temp.add(tempmessage1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, 20));
 
-        jLabel38.setFont(new java.awt.Font("Microsoft Himalaya", 0, 20)); // NOI18N
-        jLabel38.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel38.setText("- The fish may in danger at this temperature");
-        high_temp.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, 20));
+        tempmessage2.setFont(new java.awt.Font("Microsoft Himalaya", 0, 20)); // NOI18N
+        tempmessage2.setForeground(new java.awt.Color(255, 255, 255));
+        tempmessage2.setText("-This can effeect on fish growth performance");
+        high_temp.add(tempmessage2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, 20));
 
         jLabel39.setFont(new java.awt.Font("Microsoft Himalaya", 0, 20)); // NOI18N
         jLabel39.setForeground(new java.awt.Color(255, 255, 255));
         jLabel39.setText("- The reading of temperature today is");
         high_temp.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, 20));
-
-        sentence_degree.setForeground(new java.awt.Color(255, 255, 255));
-        sentence_degree.setText("_");
-        high_temp.add(sentence_degree, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
 
         jPanel25.add(high_temp, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 330, 70));
 
@@ -793,6 +786,10 @@ public class Home extends javax.swing.JFrame {
             }
         });
         temp_label.add(temp_output_home, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 150, 30));
+
+        sentence_degree.setForeground(new java.awt.Color(255, 255, 255));
+        sentence_degree.setText("_");
+        temp_label.add(sentence_degree, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
 
         jPanel25.add(temp_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 160, 40));
 
@@ -817,26 +814,18 @@ public class Home extends javax.swing.JFrame {
 
         jLabel46.setFont(new java.awt.Font("Microsoft Himalaya", 0, 20)); // NOI18N
         jLabel46.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel46.setText("- The water is contaminated with feeds");
-        high_ph.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, 20));
+        jLabel46.setText("- This will also affects fishes fins and tails");
+        high_ph.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, 20));
 
         jLabel47.setFont(new java.awt.Font("Microsoft Himalaya", 0, 20)); // NOI18N
         jLabel47.setForeground(new java.awt.Color(255, 255, 255));
         jLabel47.setText("- People are not able to drink this water");
-        high_ph.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 20));
+        high_ph.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, 20));
 
-        jPanel48.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel48.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel101.setFont(new java.awt.Font("Microsoft Himalaya", 0, 20)); // NOI18N
-        jLabel101.setText("- The water is contaminated with feeds");
-        jPanel48.add(jLabel101, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, 20));
-
-        jLabel102.setFont(new java.awt.Font("Microsoft Himalaya", 0, 20)); // NOI18N
-        jLabel102.setText("- People are not able to drink this water");
-        jPanel48.add(jLabel102, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 20));
-
-        high_ph.add(jPanel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 330, 60));
+        jLabel61.setFont(new java.awt.Font("Microsoft Himalaya", 0, 20)); // NOI18N
+        jLabel61.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel61.setText("- Fishes may have trouble breathing ");
+        high_ph.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, 20));
 
         jPanel25.add(high_ph, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 330, 60));
 
@@ -952,8 +941,8 @@ public class Home extends javax.swing.JFrame {
 
         jLabel107.setFont(new java.awt.Font("Microsoft Himalaya", 0, 20)); // NOI18N
         jLabel107.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel107.setText("-Water could be acidic and not realiable to drink");
-        low_ph.add(jLabel107, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, 20));
+        jLabel107.setText("- Can chop or chemically burn a fish skin");
+        low_ph.add(jLabel107, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, 20));
 
         jLabel108.setFont(new java.awt.Font("Microsoft Himalaya", 0, 20)); // NOI18N
         jLabel108.setForeground(new java.awt.Color(255, 255, 255));
@@ -966,11 +955,6 @@ public class Home extends javax.swing.JFrame {
         high_tds.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         high_tds.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel50.setFont(new java.awt.Font("Microsoft Himalaya", 0, 20)); // NOI18N
-        jLabel50.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel50.setText(" oxygen");
-        high_tds.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 120, 20));
-
         jLabel51.setFont(new java.awt.Font("Microsoft Himalaya", 0, 20)); // NOI18N
         jLabel51.setForeground(new java.awt.Color(255, 255, 255));
         jLabel51.setText("- TDS on the water is on high condition");
@@ -978,7 +962,7 @@ public class Home extends javax.swing.JFrame {
 
         jLabel111.setFont(new java.awt.Font("Microsoft Himalaya", 0, 20)); // NOI18N
         jLabel111.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel111.setText("-  harm for environment with this level of total desolve");
+        jLabel111.setText("- Can cause toxicity on yyoyur fish");
         high_tds.add(jLabel111, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, 20));
 
         jPanel25.add(high_tds, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, 330, 60));
@@ -1786,6 +1770,7 @@ public class Home extends javax.swing.JFrame {
                 low_temp1.setVisible(false);
                 high_temp1.setVisible(false);
                 temp_level.setText("meduim");
+                tempmessage1.setText("Normal Temperature this is good to yyyour fish");
         }else if(result > 31){
                 high_temp.setVisible(true);
                 meduim_temp.setVisible(false);
@@ -2416,8 +2401,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel100;
-    private javax.swing.JLabel jLabel101;
-    private javax.swing.JLabel jLabel102;
     private javax.swing.JLabel jLabel103;
     private javax.swing.JLabel jLabel104;
     private javax.swing.JLabel jLabel105;
@@ -2466,8 +2449,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
-    private javax.swing.JLabel jLabel37;
-    private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
@@ -2481,7 +2462,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel52;
     private javax.swing.JLabel jLabel53;
@@ -2493,6 +2473,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel60;
+    private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel62;
     private javax.swing.JLabel jLabel63;
     private javax.swing.JLabel jLabel64;
@@ -2551,7 +2532,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel45;
     private javax.swing.JPanel jPanel46;
     private javax.swing.JPanel jPanel47;
-    private javax.swing.JPanel jPanel48;
     private javax.swing.JPanel jPanel49;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
@@ -2607,6 +2587,8 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel temp_level;
     private javax.swing.JLabel temp_output_home;
     private javax.swing.JLabel temp_output_home1;
+    private javax.swing.JLabel tempmessage1;
+    private javax.swing.JLabel tempmessage2;
     private javax.swing.JLabel time_value;
     // End of variables declaration//GEN-END:variables
 }

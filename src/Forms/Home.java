@@ -105,6 +105,21 @@ public class Home extends javax.swing.JFrame {
         }, 
         2000 
 );
+         Timer time = new Timer();
+    time.schedule(new TimerTask(){
+        @Override
+        public void run() {
+            graph1(); 
+            graph2();
+            graph3();
+            ValuesCondition1();
+            ValuesCondition2();
+            ValuesCondition3();
+            Identifier();
+            devicestatus();
+            loc();
+        }
+    },1000,1000);
         
         
     }
@@ -1711,21 +1726,7 @@ public class Home extends javax.swing.JFrame {
     }
     
     public void realTime(){
-    Timer time = new Timer();
-    time.schedule(new TimerTask(){
-        @Override
-        public void run() {
-            graph1(); 
-            graph2();
-            graph3();
-            ValuesCondition1();
-            ValuesCondition2();
-            ValuesCondition3();
-            Identifier();
-            devicestatus();
-            loc();
-        }
-    },1000,1000);
+   
     }
     public void ValuesCondition1(){
         Statement st;
@@ -1734,7 +1735,7 @@ public class Home extends javax.swing.JFrame {
         try{
             conn=MyConnection.ConnectDB();
             st = conn.createStatement();
-        String consult = "SELECT MAX(cdd_id), sensor1_output FROM calculated_device_data WHERE DATE(date_created) = CURDATE()";
+        String consult = "SELECT sensor1_output FROM calculated_device_data WHERE cdd_id = (SELECT MAX(cdd_id) FROM calculated_device_data WHERE DATE(date_created) = CURDATE())";
         rs = st.executeQuery(consult);
         
         if(rs.next()){
@@ -1789,7 +1790,7 @@ public class Home extends javax.swing.JFrame {
         try{
             conn=MyConnection.ConnectDB();
             st = conn.createStatement();
-        String consult = "SELECT MAX(cdd_id), sensor2_output FROM calculated_device_data WHERE DATE(date_created) = CURDATE()";
+        String consult = "SELECT sensor2_output FROM calculated_device_data WHERE cdd_id = (SELECT MAX(cdd_id) FROM calculated_device_data WHERE DATE(date_created) = CURDATE())";
         rs = st.executeQuery(consult);
         
         if(rs.next() == true){
@@ -1836,65 +1837,64 @@ public class Home extends javax.swing.JFrame {
         try{
             conn=MyConnection.ConnectDB();
             st = conn.createStatement();
-        String consult = "SELECT MAX(cdd_id), sensor3_output, date_created FROM calculated_device_data WHERE DATE(date_created) = CURDATE()";
+        String consult = "SELECT sensor3_output, date_created FROM calculated_device_data WHERE cdd_id = (SELECT MAX(cdd_id) FROM calculated_device_data WHERE DATE(date_created) = CURDATE())";
         rs = st.executeQuery(consult);
-        
-        if(rs.next() == true){
-        Double result = rs.getDouble("sensor3_output");
-        String result2 = rs.getString("date_created");
-        String res = Double.toString(result);
-        tds_output_home.setText(res+"ppm");
-        tds_output_home1.setText(res+"ppm");
-        time_value.setText(result2);
-        if(result <= 400){
-            low_tds_message.setText("EXCELLENT");
-            low_tds.setVisible(true);
-            meduim_tds.setVisible(false);
-            high_tds.setVisible(false);
-            low_tds_message1.setText("EXCELLENT");
-            low_tds1.setVisible(true);
-            meduim_tds1.setVisible(false);
-            high_tds1.setVisible(false);
-            tds_level.setText("low");
-        }else if (result > 400 && result <= 600){
-            low_tds_message.setText("GOOD");
-            low_tds.setVisible(false);
-            meduim_tds.setVisible(true);
-            high_tds.setVisible(false);
-            low_tds_message1.setText("GOOD");
-            low_tds1.setVisible(false);
-            meduim_tds1.setVisible(true);
-            high_tds1.setVisible(false);
-            tds_level.setText("meduim");
-        }else if (result > 600 && result <= 900){
-            meduim_tds_message.setText("FAIR");
-            meduim_tds.setVisible(true);
-            low_tds.setVisible(false);
-            high_tds.setVisible(false);
-            meduim_tds_message1.setText("FAIR");
-            meduim_tds1.setVisible(true);
-            low_tds1.setVisible(false);
-            high_tds1.setVisible(false);
-            tds_level.setText("meduim");
-        }else if (result > 900 && result <= 1200){
-            meduim_tds_message.setText("POOR");
-            meduim_tds.setVisible(true);
-            low_tds.setVisible(false);
-            high_tds.setVisible(false);
-//            hihg_tds_message1.setText("POOR");
-            meduim_tds1.setVisible(true);
-            low_tds1.setVisible(false);
-            high_tds1.setVisible(false);
-            tds_level.setText("meduim");
-        }else if (result > 1200.5){
-            high_tds.setVisible(true);
-            low_tds.setVisible(false);
-            meduim_tds.setVisible(false);
-            high_tds1.setVisible(true);
-            low_tds1.setVisible(false);
-            meduim_tds1.setVisible(false);
-            tds_level.setText("high");
-        }
+        if(rs.next()){
+            Double result = rs.getDouble("sensor3_output");
+            String result2 = rs.getString("date_created");
+            String res = Double.toString(result);
+            tds_output_home.setText(res+"ppm");
+            tds_output_home1.setText(res+"ppm");
+            time_value.setText(result2);
+            if(result <= 400){
+                low_tds_message.setText("EXCELLENT");
+                low_tds.setVisible(true);
+                meduim_tds.setVisible(false);
+                high_tds.setVisible(false);
+                low_tds_message1.setText("EXCELLENT");
+                low_tds1.setVisible(true);
+                meduim_tds1.setVisible(false);
+                high_tds1.setVisible(false);
+                tds_level.setText("low");
+            }else if (result > 400 && result <= 600){
+                low_tds_message.setText("GOOD");
+                low_tds.setVisible(false);
+                meduim_tds.setVisible(true);
+                high_tds.setVisible(false);
+                low_tds_message1.setText("GOOD");
+                low_tds1.setVisible(false);
+                meduim_tds1.setVisible(true);
+                high_tds1.setVisible(false);
+                tds_level.setText("meduim");
+            }else if (result > 600 && result <= 900){
+                meduim_tds_message.setText("FAIR");
+                meduim_tds.setVisible(true);
+                low_tds.setVisible(false);
+                high_tds.setVisible(false);
+                meduim_tds_message1.setText("FAIR");
+                meduim_tds1.setVisible(true);
+                low_tds1.setVisible(false);
+                high_tds1.setVisible(false);
+                tds_level.setText("meduim");
+            }else if (result > 900 && result <= 1200){
+                meduim_tds_message.setText("POOR");
+                meduim_tds.setVisible(true);
+                low_tds.setVisible(false);
+                high_tds.setVisible(false);
+    //            hihg_tds_message1.setText("POOR");
+                meduim_tds1.setVisible(true);
+                low_tds1.setVisible(false);
+                high_tds1.setVisible(false);
+                tds_level.setText("meduim");
+            }else if (result > 1200.5){
+                high_tds.setVisible(true);
+                low_tds.setVisible(false);
+                meduim_tds.setVisible(false);
+                high_tds1.setVisible(true);
+                low_tds1.setVisible(false);
+                meduim_tds1.setVisible(false);
+                tds_level.setText("high");
+            }
         }
         conn.close();
         }catch(Exception e){
